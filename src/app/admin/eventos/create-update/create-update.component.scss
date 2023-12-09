@@ -1,0 +1,12 @@
+.evento input[type="file"] {
+  display: none;
+}
+
+.reset {
+  all: unset;
+}
+
+.blur {
+  backdrop-filter: blur(4px);
+  background-color: hsla(0, 0%, 100%, .5);
+}
