@@ -1,0 +1,58 @@
+<p-toast></p-toast>
+<section class="w-full flex flex-column gap-2 px-7 py-5">
+  <section class="flex justify-content-between pt-3">
+    <span class="flex align-items-center cursor-pointer" (click)="back()">
+      <i class="pi pi-angle-left"></i>
+      <p class="m-0 font">Voltar</p>
+    </span>
+  </section>
+  <section class="w-full h-auto py-2">
+    <section class="shadow-2 border-round-2xl h-auto flex justify-content-between gap-4"
+      [style.background]="event?.photo ? 'url(http://localhost:8180/arquivo/' + event?.photo?.id + '/download) no-repeat center/cover'  : event?.cor">
+      <section class="h-27rem w-4 flex align-items-center pl-7">
+        <p class="m-0 font-normal text-white text-7xl w-full text-left" [style.color]="event?.photo ? event?.cor : '#FFF'">
+          {{ event?.nameCard ? event?.nameCard : event?.name }}
+        </p>
+      </section>
+    </section>
+  </section>
+  <section class="w-full  gap-2 py-2 flex flex-column justify-content-between">
+    <section class="flex flex-column justify-content-between w-full ">
+      <p class="m-0 w-full font-semibold text-2xl font">
+        {{event?.name}}
+      </p>
+      <section class="flex flex-row justify-content-between gap-2 align-items-center w-full">
+        <section class="w-full flex flex-column gap-3">
+          <p class="m-0"><i class="pi pi-calendar">{{event?.dateHora}} Sexta-feira, 05/01/2023</i></p>
+          <p class="m-0"> <i class="pi pi-clock"></i>{{event?.dateHora}} 19h</p>
+          <span class="flex gap-2"><i class="pi pi-directions h-full"></i>
+            <p class="m-0">{{event?.address}} 704/904 Seps Eq <br> 702/902, Brasília - DF
+            </p>
+          </span>
+        </section>
+        <p-button label="Participar" [rounded]="true" severity="info" (click)="choice()"></p-button>
+
+        <section class="flex flex-row justify-content-end gap-3 w-full">
+          @for (item of items; track $index) {
+          <section
+            class="w-3 h-10rem shadow-1 flex flex-column align-items-center justify-content-between border-round-2xl">
+            <section class=" border-round-top-2xl w-full h-full"
+              [style.background]="'url(assets/start/'+item.photo+') no-repeat center/cover'">
+            </section>
+            <section class="color-base w-full text-center text-white p-1 border-round-bottom-2xl" style="height: 30%;">
+              <p class="m-0">{{item.name}}</p>
+            </section>
+          </section>
+          }
+        </section>
+      </section>
+    </section>
+    <p-divider></p-divider>
+    <section class="w-full font">
+      <p>Descrição</p>
+      <p class="m-0 w-full  font-normal text-lg">
+        {{event?.description}}
+      </p>
+    </section>
+  </section>
+</section>

@@ -1,0 +1,31 @@
+@if (obj && obj.length > 0) {
+<p-carousel [value]="obj" [numVisible]="1" [numScroll]="1" [circular]="true" [showIndicators]="false">
+  <ng-template let-event pTemplate="item">
+    <section class="p-1 cursor-pointer">
+      <section class="shadow-2 border-round-2xl h-auto flex justify-content-between gap-4"
+        [style.background]="event.photo ? 'url(http://localhost:8180/arquivo/' + event.photo?.id + '/download) no-repeat center/cover'  : event.cor"
+        (click)="view(event.id)">
+        <section class="h-27rem w-4 flex align-items-center pl-7">
+          <p class="font-normal text-7xl w-full text-left" [style.color]="event.photo ? event.cor : '#FFF'">
+            {{ event.nameCard ? event.nameCard : event.name }}
+          </p>
+        </section>
+      </section>
+    </section>
+  </ng-template>
+</p-carousel>
+}
+@if (objFilter && objFilter.length > 0) {
+<p-carousel [value]="objFilter" [numVisible]="5" [numScroll]="3" [circular]="true" [showIndicators]="false">
+  <ng-template let-event pTemplate="item">
+    <section class="p-1 cursor-pointer">
+      <section class="shadow-2 border-round-2xl h-auto flex justify-content-between gap-4"
+        [style.background]="event.photo ? 'url(http://localhost:8180/arquivo/' + event.photo?.id + '/download) no-repeat center/cover'  : event.cor"
+        (click)="view(event.id)">
+        <section class="h-10rem w-4 flex align-items-center pl-7">
+        </section>
+      </section>
+    </section>
+  </ng-template>
+</p-carousel>
+}

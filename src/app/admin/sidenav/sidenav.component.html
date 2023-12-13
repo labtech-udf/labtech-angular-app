@@ -1,4 +1,15 @@
-<section class="surface-card shadow-1 border-round-2xl h-full w-full">
-
-  <p>sidenav works!</p>
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<section class="flex flex-column justify-content-between min-h-full">
+  <section>
+    <p-menu styleClass="w-full outline-none border-none surface-card" [model]="items"></p-menu>
+  </section>
+  <section class="flex flex-column h-auto">
+    <p-divider></p-divider>
+    <div class="flex flex-row p-2 align-items-center justify-content-between">
+      <span (click)="logout($event)" class="text-center cursor-pointer"> <i class="pi pi-chevron-left"></i> Sair </span>
+      <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png" styleClass="mr-2"
+        size="large" shape="circle"></p-avatar>
+    </div>
+  </section>
 </section>

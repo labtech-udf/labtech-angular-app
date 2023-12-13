@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { TagModule } from 'primeng/tag';
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [],
+  imports: [TagModule],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })

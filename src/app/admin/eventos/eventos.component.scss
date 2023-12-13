@@ -1,3 +1,8 @@
-::ng-deep .p-dataview .p-dataview-header{
-  background: none;
+::ng-deep .p-dataview {
+  // .p-dataview-header {
+  //   background: none;
+  // }
+  .p-dataview-emptymessage {
+    display: none;
+  }
 }

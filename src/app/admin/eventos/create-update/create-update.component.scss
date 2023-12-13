@@ -2,8 +2,11 @@
   display: none;
 }
 
-.reset {
-  all: unset;
+.reset-input {
+ background: none;
+ border: none;
+ outline: none;
+ resize: none;
 }
 
 .blur {
