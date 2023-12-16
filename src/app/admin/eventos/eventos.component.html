@@ -1,6 +1,6 @@
 <p-toast></p-toast>
-<p-dataView #dv [value]="eventos" [layout]="layout" [paginator]="true" [rows]="10">
-  <ng-template pTemplate="header" styleClass="bg-white">
+<p-dataView #dv [value]="eventos" [layout]="layout" [paginator]="true" [rows]="5">
+  <ng-template pTemplate="header" styleClass="">
     <section class="flex justify-content-between p-2 align-items-center">
       <section>
         <p-dataViewLayoutOptions styleClass=""></p-dataViewLayoutOptions>
@@ -60,7 +60,7 @@
     <div class="grid grid-nogutter">
       @for (item of event; track $index;) {
       <div class="col-12 sm:col-6 lg:col-12 xl:col-3 p-2">
-        <div class="p-4 border-1 surface-border surface-card border-round">
+        <div class="p-4 border-1 h-full surface-border surface-card border-round">
           <div class="flex flex-wrap align-items-center justify-content-between gap-2">
             <span class="flex align-items-center gap-2">
               <i class="pi pi-hashtag"></i>
@@ -71,7 +71,7 @@
           <div class="flex flex-column align-items-center gap-3 py-5">
             <img class="w-10 shadow-2 border-round h-9rem"
               [src]="'http://localhost:8180/arquivo/' + item.photo?.id + '/download'" />
-            <div class="text-2xl font-bold">{{ item.name }}</div>
+            <div class="text-2xl h-full font-bold">{{ item.name }}</div>
           </div>
           <div class="flex w-full flex-row justify-content-between">
             <p-button icon="pi pi-pencil" label="Editar" [text]="true" [raised]="true" severity="success"

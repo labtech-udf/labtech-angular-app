@@ -62,15 +62,20 @@ export class CreateUpdateComponent implements OnInit {
   async load(): Promise<void> {
     this.route.queryParams.subscribe(async (params) => {
       const id = params['id'];
-      const type = params['type'];
       if (id) {
         (await this.service.getByIds(id)).subscribe(async data => {
           if (data) {
             this.evento = data;
-            console.log(data);
+            console.error(data);
             await this.setForm(data);
+            if (data.dateHora === null) {
+              this.form.get('dateHora')?.setValue(new Date());
+            }
+            this.getData();
           }
         })
+      }else{
+        this.form.get('dateHora')?.setValue(new Date());
       }
     });
   }
@@ -83,21 +88,24 @@ export class CreateUpdateComponent implements OnInit {
   }
 
   async save() {
-    this.loading = true;
-    console.error('Evento!');
-    if (this.form.valid) {
-      if(this.evento?.id){
+    // this.loading = true;
+    // console.error(this.form.valid)
+    // if (this.form.valid) {
+    //   if (this.evento?.id) {
         await this.update()
-      }else{
-        await this.create;
-      }
-    } else {
-      console.error('Formulário inválido. Certifique-se de preencher todos os campos necessários.');
-      this.loading = false;
-    }
+    //   } else {
+        // await this.create;
+    //   }
+    // } else {
+    //   console.error('Formulário inválido. Certifique-se de preencher todos os campos necessários.');
+    //   this.loading = false;
+    // }
   }
   async create() {
+    console.error(this.form.value)
     const eventoData = this.form.value as EventoDTO;
+    // eventoData.dateHora = "";
+    console.error(eventoData)
     this.service.createEvento(eventoData, this.photo).subscribe(
       (response) => {
         this.loading = false;
@@ -113,6 +121,7 @@ export class CreateUpdateComponent implements OnInit {
   }
   async update() {
     const eventoData = this.form.value as EventoDTO;
+    console.error(this.form.valid)
     this.service.createEvento(eventoData, this.photo).subscribe(
       (response) => {
         this.loading = false;
@@ -138,6 +147,19 @@ export class CreateUpdateComponent implements OnInit {
       const url = URL.createObjectURL(file);
       this.imageUrl = url;
     }
+  }
+  getData() {
+    var data = new Date(this.form?.value?.dateHora);
+    var dia = data.getDate();
+    var mes = data.getMonth() + 1;
+    var ano = data.getFullYear();
+    return `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano}`;
+  }
+  getHora() {
+    var data = new Date(this.form?.value?.dateHora);
+    var horas = data.getHours();
+    var minutos = data.getMinutes();
+    return ` ${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`
   }
 }
 

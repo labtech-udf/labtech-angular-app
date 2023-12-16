@@ -14,10 +14,10 @@
         [style.background]="imageUrl ? 'url(' + imageUrl + ') no-repeat center/cover' : form?.value?.cor">
         <section class="w-6 flex flex-column gap-2">
           <p class="m-0 font-bold py-3 px-2 text-white">Titulo em estaque :</p>
-          <section class="p-1 flex flex-column justify-content-around">
-            <section class=" w-9 pl-5">
+          <section class="p-1 flex flex-column justify-content-around h-full">
+            <section class=" w-9 pl-5 h-full">
               <textarea maxlength="40" pInputTextarea formControlName="nameCard"
-                [className]="'font-normal text-6xl w-full text-left reset-input text-white'"
+                [className]="'font-normal text-6xl w-full text-left h-full reset-input text-white'"
                 [placeholder]="'Clique para editar'"></textarea>
             </section>
           </section>
@@ -45,15 +45,24 @@
           <ngx-colors ngx-colors-trigger formControlName="cor" acceptLabel="selecionar"
             cancelLabel="fechar"></ngx-colors>
         </section>
-        <section class="w-full ">
+        <section class="w-full flex align-items-center">
+          <i class="pi pi-map-marker font-normal text-base"></i>
+          <input [className]="'w-full reset-input font-normal text-base'" pInputText id="address"
+            formControlName="address" placeholder="Clique para adicionar a localização" />
+        </section>
+        <section>
+          <p><i class="pi pi-calendar"></i> {{getData()}}</p>
+          <p><i class="pi pi-clock"></i> {{getHora()}}</p>
+        </section>
+        <section class="w-full h-full">
+          <p class="m-0 text-base font-normal">Descrição do evento:</p>
           <textarea pInputTextarea formControlName="description"
-            [className]="'font-normal text-lg w-full  text-left reset-input'"
+            [className]="'font-normal pl-1 h-full text-lg w-full  text-left reset-input'"
             [placeholder]="'Clique para adicionar uma descrição'"></textarea>
         </section>
       </section>
       <section class="">
-        <p-calendar formControlName="dateHora" [inline]="true"
-          [showTime]="true"></p-calendar>
+        <p-calendar formControlName="dateHora" [inline]="true" [showTime]="true"></p-calendar>
       </section>
     </section>
   </section>

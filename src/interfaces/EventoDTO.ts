@@ -6,7 +6,7 @@ export class EventoDTO {
   nameCard: string = "";
   photo: File | null = null;
   description: string = "";
-  dateHora: Date | null = null;
+  dateHora: string = "";
   address: string = "";
   cor: string = "";
   status: string = "";

@@ -95,16 +95,16 @@ export class EventosComponent implements OnInit {
     })
   }
   async delEvent(item: EventoDTO) {
-    try {
+    // try {
       if (item?.id) {
         await this.service.delete(item.id);
         await this.load();
         this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Evento excluído com sucesso' });
       }
-    } catch (error) {
-      console.error('Erro ao excluir evento:', error);
-      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao excluir o evento.' });
-    }
+    // } catch (error) {
+    //   console.error('Erro ao excluir evento:', error);
+    //   this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao excluir o evento.' });
+    // }
   }
 
 }

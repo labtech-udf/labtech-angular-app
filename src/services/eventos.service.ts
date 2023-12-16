@@ -22,6 +22,7 @@ export class EventosService {
   }
 
   createEvento(evento: EventoDTO, photo: File): Observable<any> {
+    console.error(evento)
     const formData = new FormData();
     formData.append('file', photo);
     formData.append('evento', JSON.stringify({ ...evento }));
