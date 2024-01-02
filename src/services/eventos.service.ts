@@ -37,6 +37,6 @@ export class EventosService {
   }
 
   async delete(id: number) {
-    return this.http.delete<any>(`${this.api}/event/${id}`).toPromise();
+    return this.http.delete<any>(`${this.api}/${id}`).toPromise();
   }
 }
