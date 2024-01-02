@@ -1,12 +1,22 @@
 ::ng-deep .p-dataview {
-  // .p-dataview-header {
-  //   background: none;
-  // }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .p-dataview-content {
+    height: calc(100% - 9.25rem);
+  }
   .p-dataview-emptymessage {
     display: none;
   }
-  .p-dataview-header{
+  .p-dataview-header {
     border-top-right-radius: 0.75rem;
     border-top-left-radius: 0.75rem;
+    height: 5rem;
+    background: none;
+    border: none;
+  }
+  .p-paginator {
+    height: 4.25rem;
   }
 }

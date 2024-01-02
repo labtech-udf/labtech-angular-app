@@ -31,7 +31,7 @@ export class CreateUpdateComponent implements OnInit {
   evento!: any;
   skeleton: boolean = false;
   loading: boolean = false;
-  photo!: any;
+  photo!: File;
   imageUrl: string | null = null;
   constructor(
     private route: ActivatedRoute,
@@ -74,32 +74,41 @@ export class CreateUpdateComponent implements OnInit {
             this.getData();
           }
         })
-      }else{
+      } else {
         this.form.get('dateHora')?.setValue(new Date());
       }
     });
   }
   setForm(data: any) {
     this.form.patchValue(data);
-    if (data?.photo?.id) {
-      const url = 'http://localhost:8180/arquivo/' + data?.photo?.id + '/download';
+
+    if (data?.photo?.url) {
+      this.imageUrl = data.photo.url;
+    }
+  }
+  createPhoto(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    if (file) {
+      this.photo = file;
+      const url = URL.createObjectURL(file);
       this.imageUrl = url;
     }
   }
-
   async save() {
-    // this.loading = true;
-    // console.error(this.form.valid)
-    // if (this.form.valid) {
-    //   if (this.evento?.id) {
+    console.error(this.photo)
+    this.loading = true;
+    console.error(this.form.valid)
+    if (this.form.valid) {
+      if (this.evento?.id) {
         await this.update()
-    //   } else {
-        // await this.create;
-    //   }
-    // } else {
-    //   console.error('Formulário inválido. Certifique-se de preencher todos os campos necessários.');
-    //   this.loading = false;
-    // }
+      } else {
+        await this.create;
+      }
+    } else {
+      console.error('Formulário inválido. Certifique-se de preencher todos os campos necessários.');
+      this.loading = false;
+    }
   }
   async create() {
     console.error(this.form.value)
@@ -122,13 +131,13 @@ export class CreateUpdateComponent implements OnInit {
   async update() {
     const eventoData = this.form.value as EventoDTO;
     console.error(this.form.valid)
-    this.service.createEvento(eventoData, this.photo).subscribe(
+    this.service.updateEvento(eventoData, this.photo).subscribe(
       (response) => {
         this.loading = false;
         console.log('Evento criado com sucesso!', response);
       },
       (error) => {
-        console.error('Erro ao criar evento:', error);
+        console.error('Erro ao atualizar evento:', error);
       },
       () => {
         this.loading = false;
@@ -137,16 +146,6 @@ export class CreateUpdateComponent implements OnInit {
   }
   navigation(rota: string) {
     this.router.navigate([rota]);
-  }
-
-  createPhoto(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    if (file) {
-      this.photo = file;
-      const url = URL.createObjectURL(file);
-      this.imageUrl = url;
-    }
   }
   getData() {
     var data = new Date(this.form?.value?.dateHora);

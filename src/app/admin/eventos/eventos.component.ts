@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { EventosService } from '../../../services/eventos.service';
-import { EventoDTO } from '../../../interfaces/EventoDTO';
-import { DataViewModule } from 'primeng/dataview';
-import { ButtonModule } from 'primeng/button';
-import { Router } from '@angular/router';
-import { TagModule } from 'primeng/tag';
 import { NgFor, NgIf } from '@angular/common';
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DataViewModule } from 'primeng/dataview';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
+
+import { EventoDTO } from '../../../interfaces/EventoDTO';
+import { EventosService } from '../../../services/eventos.service';
+
 @Component({
   selector: 'app-eventos',
   standalone: true,
@@ -19,7 +22,8 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     TagModule,
     ConfirmPopupModule,
-    ToastModule
+    ToastModule,
+    ScrollPanelModule
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './eventos.component.html',
@@ -27,7 +31,7 @@ import { ToastModule } from 'primeng/toast';
 })
 export class EventosComponent implements OnInit {
   eventos!: EventoDTO[];
-  layout: 'list' | 'grid' = 'grid';
+  layout: 'list' | 'grid' = 'list';
   constructor(
     private service: EventosService,
     private router: Router,
@@ -42,6 +46,7 @@ export class EventosComponent implements OnInit {
   async load() {
     (await this.service.getList()).subscribe(data => {
       this.eventos = data;
+      console.error(data)
     })
   }
 
@@ -95,16 +100,16 @@ export class EventosComponent implements OnInit {
     })
   }
   async delEvent(item: EventoDTO) {
-    // try {
+    try {
       if (item?.id) {
         await this.service.delete(item.id);
         await this.load();
         this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Evento excluído com sucesso' });
       }
-    // } catch (error) {
-    //   console.error('Erro ao excluir evento:', error);
-    //   this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao excluir o evento.' });
-    // }
+    } catch (error) {
+      console.error('Erro ao excluir evento:', error);
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Erro ao excluir o evento.' });
+    }
   }
 
 }

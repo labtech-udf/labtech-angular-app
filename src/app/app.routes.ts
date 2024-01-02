@@ -6,6 +6,7 @@ import { EventosComponent } from './admin/eventos/eventos.component';
 import { PageNotFoundComponent } from './layout/page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { EventoDetalhesComponent } from './components/evento-detalhes/evento-detalhes.component';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,6 +15,7 @@ export const routes: Routes = [
   {
     path: 'admin', component: AdminComponent,
     children: [
+      { path: '', component: HomeAdminComponent },
       { path: 'evento', component: EventosComponent },
       { path: 'evento-config', component: CreateUpdateComponent }
     ]

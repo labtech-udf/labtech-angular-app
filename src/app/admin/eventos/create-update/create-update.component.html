@@ -1,12 +1,12 @@
 <form class="w-full h-full" [formGroup]="form" #formDir="ngForm">
   <section class="w-full flex flex-column gap-2 px-3">
-    <section class="flex justify-content-between pt-3">
+    <section class="flex justify-content-between pt-2">
       <span class="flex align-items-center cursor-pointer" (click)="navigation('/admin/evento')">
         <i class="pi pi-angle-left"></i>
         <p class="m-0">Voltar</p>
       </span>
-      <p-button [loading]="loading" severity="success" class="m-1" (click)="save()">
-        <p class="m-0 px-2 py-1 font-bold text-base">Salvar</p>
+      <p-button [loading]="loading" severity="success"(click)="save()">
+        <p class="m-0 font-bold text-base">Salvar</p>
       </p-button>
     </section>
     <section class="w-full h-auto py-2">
@@ -62,7 +62,7 @@
         </section>
       </section>
       <section class="">
-        <p-calendar formControlName="dateHora" [inline]="true" [showTime]="true"></p-calendar>
+        <p-calendar class="w-5rem" formControlName="dateHora" [inline]="true" [showTime]="true"></p-calendar>
       </section>
     </section>
   </section>

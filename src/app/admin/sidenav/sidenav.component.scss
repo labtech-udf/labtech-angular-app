@@ -1,0 +1,10 @@
+.type {
+  color: #4b5563;
+}
+::ng-deep .p-menu {
+  .p-focus {
+    .p-menuitem-link-active {
+      font-weight: bold;
+    }
+  }
+}
