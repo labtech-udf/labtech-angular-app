@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MenuItem, MenuItemCommandEvent, MessageService } from 'primeng/api';
-import { MenuModule } from 'primeng/menu';
-import { DividerModule } from 'primeng/divider';
-import { AvatarModule } from 'primeng/avatar';
 import { Router } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DividerModule } from 'primeng/divider';
 import { ToastModule } from 'primeng/toast';
+
+import { MenuItem } from '../../interfaces/Utils';
+
 @Component({
   selector: 'app-sidenav',
   standalone: true,
   imports: [
-    MenuModule,
     DividerModule,
     AvatarModule,
     ConfirmPopupModule,
-    ToastModule
+    ToastModule,
+    ButtonModule
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './sidenav.component.html',
@@ -28,17 +31,28 @@ export class SidenavComponent implements OnInit {
     private router: Router
   ) { }
 
-  items: MenuItem[] | undefined;
+  menu: MenuItem[] = [];
 
   ngOnInit(): void {
-    this.items = [
-      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/admin'] },
-      { label: 'Eventos', icon: 'pi pi-fw pi-calendar', routerLink: ['/admin/evento'] },
+    this.menu = [
+      { label: 'Home', icon: 'pi pi-home', action: () => this.navigateTo('/admin') },
+      {
+        label: 'Eventos', icon: 'pi pi-fw pi-calendar', subitems: [
+          { label: 'Lista de eventos', icon: 'pi pi-fw pi-list', action: () => this.navigateTo('/admin/eventos') },
+          { label: 'Settings', icon: 'pi pi-fw pi-cog', action: () => this.navigateTo('/admin/event-config') },
+        ]
+      },
       { label: 'Documentation', icon: 'pi pi-fw pi-file' },
       { label: 'Settings', icon: 'pi pi-fw pi-cog' }
     ]
   }
+  navigateTo(route: string): void {
+    this.router.navigate([route]);
+  }
 
+  toogleMenu(menu: MenuItem) {
+    menu.expanded = !menu.expanded;
+  }
   logout(event: Event) {
     this.confirmService.confirm({
       target: event.target as EventTarget,

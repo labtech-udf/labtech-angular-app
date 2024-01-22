@@ -1,10 +1,38 @@
-.type {
-  color: #4b5563;
-}
-::ng-deep .p-menu {
-  .p-focus {
-    .p-menuitem-link-active {
-      font-weight: bold;
+.sidenav {
+  .menu-list {
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: var(--border-radius);
+      // margin-right: 0.5rem;
+      border: 1px solid var(--surface-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    a {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    i,
+    span {
+      font-size: 1rem;
+      color: var(--surface-900);
+      font-weight: 500;
+    }
+    li{
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .sub-menu {
+      padding-left: 1rem;
     }
   }
 }
