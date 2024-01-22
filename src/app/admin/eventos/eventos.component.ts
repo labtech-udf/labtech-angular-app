@@ -9,8 +9,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 
-import { EventoDTO } from '../../../interfaces/EventoDTO';
-import { EventosService } from '../../../services/eventos.service';
+import { Evento } from '../../interfaces/Evento';
+import { EventosService } from './eventos.service';
 
 @Component({
   selector: 'app-eventos',
@@ -30,8 +30,8 @@ import { EventosService } from '../../../services/eventos.service';
   styleUrl: './eventos.component.scss'
 })
 export class EventosComponent implements OnInit {
-  eventos!: EventoDTO[];
-  layout: 'list' | 'grid' = 'list';
+  eventos!: Evento[];
+  layout: 'list' | 'grid' = 'grid';
   constructor(
     private service: EventosService,
     private router: Router,
@@ -50,7 +50,7 @@ export class EventosComponent implements OnInit {
     })
   }
 
-  getStatus(event: EventoDTO) {
+  getStatus(event: Evento) {
     switch (event.status) {
       // C("Em construção"),
       // AV("Avaliação"),
@@ -68,7 +68,7 @@ export class EventosComponent implements OnInit {
     }
   }
 
-  getDescricaoStatus(event: EventoDTO) {
+  getDescricaoStatus(event: Evento) {
     switch (event.status) {
       case 'C':
         return 'Em construção'
@@ -83,13 +83,13 @@ export class EventosComponent implements OnInit {
     }
   }
 
-  navigation(item: EventoDTO | null, typ: string) {
+  navigation(item: Evento | null, typ: string) {
     const id = item?.id;
     const type = typ;
-    this.router.navigate(['admin', 'evento-config'], { queryParams: { id, type } });
+    this.router.navigate(['admin', 'event-manager'], { queryParams: { id, type } });
   }
 
-  delete(event: Event, item: EventoDTO) {
+  delete(event: Event, item: Evento) {
     this.confirmService.confirm({
       target: event.target as EventTarget,
       message: 'Tem certeza que deseja continuar?',
@@ -99,7 +99,7 @@ export class EventosComponent implements OnInit {
       },
     })
   }
-  async delEvent(item: EventoDTO) {
+  async delEvent(item: Evento) {
     try {
       if (item?.id) {
         await this.service.delete(item.id);

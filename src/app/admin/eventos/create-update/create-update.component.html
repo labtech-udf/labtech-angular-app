@@ -1,7 +1,7 @@
 <form class="w-full h-full" [formGroup]="form" #formDir="ngForm">
   <section class="w-full flex flex-column gap-2 px-3">
     <section class="flex justify-content-between pt-2">
-      <span class="flex align-items-center cursor-pointer" (click)="navigation('/admin/evento')">
+      <span class="flex align-items-center cursor-pointer" (click)="navigation('/admin/eventos')">
         <i class="pi pi-angle-left"></i>
         <p class="m-0">Voltar</p>
       </span>
@@ -11,7 +11,7 @@
     </section>
     <section class="w-full h-auto py-2">
       <section class="shadow-1 border-round-2xl h-20rem flex justify-content-between gap-4"
-        [style.background]="imageUrl ? 'url(' + imageUrl + ') no-repeat center/cover' : form?.value?.cor">
+        [style.background]="imageUrl ? 'url(' + imageUrl + ') no-repeat center/cover' : form.value.cor">
         <section class="w-6 flex flex-column gap-2">
           <p class="m-0 font-bold py-3 px-2 text-white">Titulo em estaque :</p>
           <section class="p-1 flex flex-column justify-content-around h-full">

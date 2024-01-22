@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { environment } from '../env/env';
-import { EventoDTO } from '../interfaces/EventoDTO';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../../env/env';
+import { Evento } from '../../interfaces/Evento';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class EventosService {
     return this.http.get<any>(`${this.api}/${id}`);
   }
 
-  createEvento(evento: EventoDTO, photo: File): Observable<any> {
+  createEvento(evento: Evento, photo: File): Observable<any> {
     console.error(evento)
     const formData = new FormData();
     formData.append('file', photo);
@@ -29,7 +29,7 @@ export class EventosService {
     return this.http.post(this.api, formData);
   }
 
-  updateEvento(evento: EventoDTO, photo: File): Observable<any> {
+  updateEvento(evento: Evento, photo: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', photo);
     formData.append('evento', JSON.stringify({ ...evento }));

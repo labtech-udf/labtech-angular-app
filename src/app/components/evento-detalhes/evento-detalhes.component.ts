@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventosService } from '../../../services/eventos.service';
-import { DividerModule } from 'primeng/divider';
-import { ButtonModule } from 'primeng/button';
-import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
+import { ToastModule } from 'primeng/toast';
+
+import { EventosService } from '../../admin/eventos/eventos.service';
+
 @Component({
   selector: 'app-evento-detalhes',
   standalone: true,

@@ -1,12 +1,14 @@
-<section class="flex gap-3 flex-column w-full h-full md:flex-row p-3">
+<section class="flex flex-column w-full h-full md:flex-row">
   <section class="w-2 h-full">
-    <section class="surface-card shadow-3 w-full border-round-xl h-full">
+    <section class="w-ful pt-4 h-full">
       <app-sidenav />
     </section>
   </section>
-  <section class="w-full h-full surface-card shadow-3 border-round-xl">
+  <section class="py-4 px-3 w-full">
+    <section class="w-full h-full surface-card shadow-3 border-round-xl">
       <section class="w-full h-full">
         <router-outlet></router-outlet>
       </section>
+    </section>
   </section>
 </section>

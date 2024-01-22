@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { EventosService } from '../../services/eventos.service';
-import { EventoDTO } from '../../interfaces/EventoDTO';
-import { CarouselComponent } from "../shared/carousel/carousel.component";
+
+import { EventosService } from '../admin/eventos/eventos.service';
+import { Evento } from '../interfaces/Evento';
+import { CarouselComponent } from '../shared/carousel/carousel.component';
 
 @Component({
-    selector: 'app-home',
-    standalone: true,
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss',
-    imports: [RouterOutlet, CarouselComponent]
+  selector: 'app-home',
+  standalone: true,
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
+  imports: [RouterOutlet, CarouselComponent]
 })
 export class HomeComponent implements OnInit {
-  eventos!: EventoDTO[];
-  filter!: EventoDTO[];
+  eventos!: Evento[];
+  filter!: Evento[];
   constructor(
     private router: Router,
     private service: EventosService

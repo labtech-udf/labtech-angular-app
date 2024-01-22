@@ -1,6 +1,6 @@
-import { EventoCategoriasDTO } from "./EventoCategoriasDTO";
+import { EventoCategorias } from './EventoCategorias';
 
-export class StatusEventoDTO {
+export class StatusEvento {
   id?: number;
   name: string = "";
   nameCard: string = "";
@@ -10,5 +10,5 @@ export class StatusEventoDTO {
   address: string = "";
   cor: string = "";
   status: string = "";
-  categorias: EventoCategoriasDTO[] = [];
+  categorias: EventoCategorias[] = [];
 }

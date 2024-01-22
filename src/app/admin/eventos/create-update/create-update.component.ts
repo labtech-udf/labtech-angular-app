@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
-import { EventosService } from '../../../../services/eventos.service';
-import { ButtonModule } from 'primeng/button';
-import { EventoDTO } from '../../../../interfaces/EventoDTO';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputTextModule } from 'primeng/inputtext';
-import { CalendarModule } from 'primeng/calendar';
 import { NgxColorsModule, validColorValidator } from 'ngx-colors';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+import { Evento } from '../../../interfaces/Evento';
+import { EventosService } from '../eventos.service';
+
 
 @Component({
   selector: 'app-create-update',
@@ -112,7 +112,7 @@ export class CreateUpdateComponent implements OnInit {
   }
   async create() {
     console.error(this.form.value)
-    const eventoData = this.form.value as EventoDTO;
+    const eventoData = this.form.value as Evento;
     // eventoData.dateHora = "";
     console.error(eventoData)
     this.service.createEvento(eventoData, this.photo).subscribe(
@@ -129,7 +129,7 @@ export class CreateUpdateComponent implements OnInit {
     );
   }
   async update() {
-    const eventoData = this.form.value as EventoDTO;
+    const eventoData = this.form.value as Evento;
     console.error(this.form.valid)
     this.service.updateEvento(eventoData, this.photo).subscribe(
       (response) => {

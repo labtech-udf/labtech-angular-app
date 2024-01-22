@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { EventoDTO } from '../../../interfaces/EventoDTO';
-import { CarouselModule } from 'primeng/carousel';
 import { Router } from '@angular/router';
+import { CarouselModule } from 'primeng/carousel';
+
+import { Evento } from '../../interfaces/Evento';
+
 @Component({
   selector: 'app-carousel',
   standalone: true,
@@ -10,8 +12,8 @@ import { Router } from '@angular/router';
   styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent {
-  @Input() obj!: EventoDTO[];
-  @Input() objFilter!: EventoDTO[];
+  @Input() obj!: Evento[];
+  @Input() objFilter!: Evento[];
   constructor(private router: Router) { }
 
   view(id: number) {
