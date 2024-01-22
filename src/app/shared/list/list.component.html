@@ -3,7 +3,12 @@
     <ng-template pTemplate="header">
       <tr>
         @for (th of columns; track $index) {
-        <th>{{th.header}}</th>
+        @if (th.isAction) {
+        <th class="flex flex-row align-items-center gap-3">
+          {{th.header}}
+          <p-button icon="pi pi-plus" [rounded]="true" [text]="true" [raised]="true" severity="success "></p-button>
+        </th>
+        }@else{ <th>{{th.header}}</th> }
         }
       </tr>
     </ng-template>
@@ -12,8 +17,8 @@
         @for (td of columns; track $index) {
         @if(td.isBoolean){
         <td class="text-center">
-          <i [class]="obj[td?.field] ? 'pi text-green-500 pi-times-circle' : 'pi text-red-500 pi-times-circle'"></i>
-          {{td?.field}}
+          <p-tag [severity]="obj[td?.field] ? 'success' : 'danger'"
+            [value]="obj[td?.field] ? 'Ativo' : 'Inativo'"></p-tag>
         </td>
         }@else if (td.isAction) {
         <td class="flex flex-row gap-2 h-full">
@@ -22,7 +27,7 @@
           <p-button size="small" (click)="del(obj, td?.api)" icon="pi pi-trash" [rounded]="true" [text]="true"
             [raised]="true" severity="danger "></p-button>
         </td>
-        }@else {<td>{{obj[td?.field]}}</td> }
+        }@else {<td>{{ obj[td?.field] | truncate:50 }}</td>}
         }
       </tr>
     </ng-template>
