@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
 import { EventosService } from '../admin/eventos/eventos.service';
@@ -13,14 +13,10 @@ import { CarouselComponent } from '../shared/carousel/carousel.component';
   imports: [RouterOutlet, CarouselComponent]
 })
 export class HomeComponent implements OnInit {
+  private service = inject(EventosService);
   eventos!: Evento[];
   filter!: Evento[];
-  constructor(
-    private router: Router,
-    private service: EventosService
-  ) {
 
-  }
   async ngOnInit(): Promise<void> {
     await this.load();
   }

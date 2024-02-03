@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { Button, ButtonModule } from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-page-not-found',
@@ -10,6 +10,7 @@ import { Button, ButtonModule } from 'primeng/button';
   styleUrl: './page-not-found.component.scss'
 })
 export class PageNotFoundComponent {
+  
   constructor(private router: Router){}
   navigate(){
     this.router.navigate(['']);
