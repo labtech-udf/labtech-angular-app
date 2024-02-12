@@ -1,12 +1,12 @@
-<section
-  class="w-full flex justify-content-between align-items-center px-7 h-4rem border-bottom-1 border-200 surface-card">
-  <span class="cursor-pointer" (click)="navigation('')">Inicio</span>
+<section class="toolbar">
+  <span class="cursor-pointer" (click)="actions()">Inicio</span>
   <section class="text-center">
     <p-tag severity="danger" value="Aplicação em desenvolvimento, coisas podem falhar 😊"></p-tag>
   </section>
-  <section class="flex gap-2">
-    <span class="cursor-pointer" (click)="open('login')">Entrar</span>
-    <span class="cursor-pointer" (click)="open('register')">Cadastre-se</span>
-    <span class="cursor-pointer" (click)="navigation('/admin')">Admin</span>
+  <section class="user">
+    <p-avatar (click)="menu.toggle($event)"
+      image="https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png" size="large"
+      shape="circle"></p-avatar>
+    <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
   </section>
 </section>

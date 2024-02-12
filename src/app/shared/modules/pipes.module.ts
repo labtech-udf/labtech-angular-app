@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { TruncatePipe } from '../Utils/truncate.pipe';
+import { TruncatePipe } from '../utils/truncate.pipe';
 
 @NgModule({
   declarations: [TruncatePipe],

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { FooterComponent } from './footer/footer.component';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @Component({
   selector: 'app-layout',
@@ -10,6 +10,9 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
 
+  ngOnInit(): void {
+
+  }
 }

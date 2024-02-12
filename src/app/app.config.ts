@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 
 import { routes } from './app.routes';
 import { errorHttpInterceptor } from './shared/utils/error-http.interceptor';
+import { ThemeService } from './shared/utils/theme.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withFetch(), withInterceptors([errorHttpInterceptor])),
     MessageService,
+    ThemeService,
     { provide: HTTP_INTERCEPTORS, useValue: errorHttpInterceptor, multi: true }
   ]
 };

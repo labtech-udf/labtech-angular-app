@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { ThemeService } from '../../../shared/utils/theme.service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -9,10 +10,15 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './page-not-found.component.html',
   styleUrl: './page-not-found.component.scss'
 })
-export class PageNotFoundComponent {
-  
-  constructor(private router: Router){}
-  navigate(){
+export class PageNotFoundComponent implements OnInit {
+  private router = inject(Router);
+  private theme = inject(ThemeService);
+
+  ngOnInit(): void {
+    this.theme.backgroundStored();
+  }
+
+  navigate() {
     this.router.navigate(['']);
   }
 }

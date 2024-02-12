@@ -1,0 +1,42 @@
+<section class="w-full login center h-full">
+  <section class="form center">
+    <form [formGroup]="form" class="w-full">
+      <section class="login_content center">
+        <section class="w-6">
+          <p>Entre com o e-mail acadêmico</p>
+        </section>
+        <section class="form_values">
+          <span class="p-float-label">
+            <input type="text" id="username" pInputText formControlName="email" />
+            <label for="username">Username</label>
+          </span>
+          <span class="p-float-label">
+            <p-password formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+            <label for="password">Senha</label>
+          </span>
+        </section>
+      </section>
+    </form>
+    <section class="w50">
+      <p class="text-center"> <strong>Entre</strong> com outros </p>
+      <p-divider></p-divider>
+    </section>
+    <section class="redes center w50">
+      <button class="g-button center">
+        <img src="./assets/logos/google_g.png">
+        <p>Entre com o <strong>Google</strong></p>
+      </button>
+    </section>
+    <section class="w50 login center">
+      <button (click)="send()" class="login-btn center">
+        <p>Entrar</p>
+      </button>
+    </section>
+    <section class="w50 cad">
+      <p>Não tem conta? <span class="link" (click)="cad()">Cadastre-se aqui</span></p>
+    </section>
+  </section>
+  <section class="img">
+    <img class="student" src="./assets/start/login.svg" alt="" loading="">
+  </section>
+</section>

@@ -1,0 +1,22 @@
+.toolbar {
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 4rem;
+
+  .user {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  ::ng-deep .p-tieredmenu.p-tieredmenu-overlay {
+    backdrop-filter: blur(4px);
+    background-color: hsla(0, 0%, 100%, .9);
+  }
+}
