@@ -1,9 +1,9 @@
 {
   "name": "labtech-angular-app",
-  "version": "0.0.0",
+  "version": "0.0.1 - Alpha",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -22,6 +22,7 @@
     "@angular/platform-server": "^17.1.3",
     "@angular/router": "^17.1.3",
     "@angular/ssr": "^17.1.3",
+    "angular-oauth2-oidc": "^17.0.1",
     "express": "^4.18.2",
     "ngx-colors": "^3.5.2",
     "primeflex": "^3.3.1",

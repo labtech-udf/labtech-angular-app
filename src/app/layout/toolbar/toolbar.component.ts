@@ -1,9 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { TagModule } from 'primeng/tag';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+import { AuthService } from '../../auth/auth.service';
 import { ThemeService } from '../../shared/utils/theme.service';
 @Component({
   selector: 'app-toolbar',
@@ -19,9 +21,14 @@ import { ThemeService } from '../../shared/utils/theme.service';
 export class ToolbarComponent implements OnInit {
   private router = inject(Router);
   private theme = inject(ThemeService);
+  private oauth = inject(OAuthService);
+  private auth = inject(AuthService);
 
   items: MenuItem[] | undefined;
   ngOnInit() {
+    const user = this.oauth.getIdentityClaims();
+    console.log(user);
+
     this.items = [
       {
         label: 'Cadastro',
@@ -34,7 +41,7 @@ export class ToolbarComponent implements OnInit {
         label: 'login',
         icon: 'pi pi-sign-in',
         command: () => {
-          this.actions('login');
+          this.auth.initOAuth();
         }
       },
       {
@@ -49,7 +56,10 @@ export class ToolbarComponent implements OnInit {
       },
       {
         label: 'Sair',
-        icon: 'pi pi-sign-out'
+        icon: 'pi pi-sign-out',
+        command: () => {
+          this.logout();
+        }
       }
     ]
   }
@@ -73,6 +83,14 @@ export class ToolbarComponent implements OnInit {
         this.router.navigate(['']);
         break;
     }
+  }
+
+  private logout() {
+    this.auth.logOut();
+  }
+
+  private login() {
+    this.auth.initOAuth();
   }
 
 }
