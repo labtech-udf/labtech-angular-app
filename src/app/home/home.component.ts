@@ -27,12 +27,13 @@ export class HomeComponent implements OnInit {
     this.auth.getNoUser().subscribe(p => {
       console.log(p);
       this.msg = p.message;
+    });
+    
+    (await this.service.getList()).subscribe(data => {
+      this.eventos = data;
+      // executar logica para filtro em categoria
+      this.filter = data;
     })
-    // (await this.service.getList()).subscribe(data => {
-    //   this.eventos = data;
-    //   // executar logica para filtro em categoria
-    //   this.filter = data;
-    // })
   }
 
 }

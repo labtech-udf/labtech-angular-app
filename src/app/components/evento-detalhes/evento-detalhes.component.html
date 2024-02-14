@@ -8,7 +8,7 @@
   </section>
   <section class="w-full h-auto py-2">
     <section class="shadow-2 border-round-2xl h-auto flex justify-content-between gap-4"
-      [style.background]="event?.photo ? 'url(http://localhost:8180/arquivo/' + event?.photo?.id + '/download) no-repeat center/cover'  : event?.cor">
+      [style.background]="event?.photo.url ? 'url(' + event?.photo?.url + ') no-repeat center/cover'  : event?.cor">
       <section class="h-27rem w-4 flex align-items-center pl-7">
         <p class="m-0 font-normal text-white text-7xl w-full text-left" [style.color]="event?.photo ? event?.cor : '#FFF'">
           {{ event?.nameCard ? event?.nameCard : event?.name }}

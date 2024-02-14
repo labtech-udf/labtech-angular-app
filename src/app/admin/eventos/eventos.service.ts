@@ -9,7 +9,7 @@ import { Evento } from '../../interfaces/Evento';
   providedIn: 'root'
 })
 export class EventosService {
-  private api = `${environment.API_URL}/evento`;
+  private api = `${environment.API_URL}/public/getAllEvents`;
 
   constructor(private http: HttpClient) { }
 

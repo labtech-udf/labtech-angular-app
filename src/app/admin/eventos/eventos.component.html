@@ -24,14 +24,14 @@
           @for (item of event; track $index;) {
           <div class="col-12">
             <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4 border-top-1 surface-border">
-              <section class="h-5rem w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round
-                  bg-no-repeat bg-cover bg-center" [style.backgroundImage]="'url('+item.photo?.url+')'">
+              <section class="h-5rem w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
+                [ngStyle]="getStyle(item)">
               </section>
               <div
                 class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                 <div class="flex flex-column align-items-center sm:align-items-start gap-3">
                   <div class="text-2xl font-bold text-900">{{ item.name }}</div>
-                  <p-tag [value]="getDescricaoStatus(item)" [severity]="getStatus(item)"
+                  <p-tag [value]="item.status" [severity]="getSeverity(item.status)"
                     [style]="{'padding' : '5px'}"></p-tag>
                   <div class="flex align-items-center gap-3">
                     <span class="flex align-items-center gap-2">
@@ -74,10 +74,14 @@
                   <i class="pi pi-hashtag"></i>
                   <span class="font-semibold">{{ item.categoria }}</span>
                 </span>
-                <p-tag [value]="getDescricaoStatus(item)" [severity]="getStatus(item)"></p-tag>
+                <p-tag [value]="item.status" [severity]="getSeverity(item.status)"></p-tag>
               </div>
               <div class="flex flex-column align-items-center gap-3 py-5">
+                @if(item.photo?.url){
                 <img class="w-10 shadow-2 border-round h-9rem" [src]="item.photo?.url" />
+                }@else {
+                <section class="w-10 shadow-2 border-round h-9rem" [style.background]="item.cor"></section>
+                }
                 <div class="text-2xl h-full font-bold">{{ item.name }}</div>
               </div>
               <div class="flex w-full flex-row justify-content-between">

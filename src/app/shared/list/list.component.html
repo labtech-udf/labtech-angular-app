@@ -1,35 +1,39 @@
-<section class="p-2 table">
-  <p-table [value]="list">
-    <ng-template pTemplate="header">
-      <tr>
-        @for (th of columns; track $index) {
-        @if (th.isAction) {
-        <th class="flex flex-row align-items-center gap-3">
-          {{th.header}}
-          <p-button icon="pi pi-plus" [rounded]="true" [text]="true" [raised]="true" severity="success "></p-button>
-        </th>
-        }@else{ <th>{{th.header}}</th> }
-        }
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-obj>
-      <tr>
-        @for (td of columns; track $index) {
-        @if(td.isBoolean){
-        <td class="text-center">
-          <p-tag [severity]="obj[td?.field] ? 'success' : 'danger'"
-            [value]="obj[td?.field] ? 'Ativo' : 'Inativo'"></p-tag>
-        </td>
-        }@else if (td.isAction) {
-        <td class="flex flex-row gap-2 h-full">
-          <p-button size="small" (click)="edit(obj)" icon="pi pi-pencil" [rounded]="true" [text]="true" [raised]="true"
-            severity="warning "></p-button>
-          <p-button size="small" (click)="del(obj, td?.api)" icon="pi pi-trash" [rounded]="true" [text]="true"
-            [raised]="true" severity="danger "></p-button>
-        </td>
-        }@else {<td>{{ obj[td?.field] | truncate:50 }}</td>}
-        }
-      </tr>
-    </ng-template>
-  </p-table>
+<section class="flex flex-column">
+  <p class="m-0 p-2 font-semibold">{{title}}</p>
+  <section class="table w-full">
+    <p-table [value]="list" [scrollable]="true" scrollHeight="300px" [styleClass]="'p-datatable-sm'">
+      <ng-template pTemplate="header">
+        <tr>
+          @for (th of columns; track $index) {
+          @if (th.isAction) {
+          <th class="flex flex-row align-items-center gap-3">
+            {{th.header}}
+            <!-- <p-button icon="pi pi-plus" size="small" [rounded]="true" [text]="true" [raised]="true" severity="success "></p-button> -->
+            <!-- <p-button label="Success" size="small" [text]="true" [raised]="true" severity="success"></p-button> -->
+          </th>
+          }@else{ <th>{{th.header}}</th> }
+          }
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-obj>
+        <tr>
+          @for (td of columns; track $index) {
+          @if(td.isBoolean){
+          <td class="text-center">
+            <p-tag [severity]="obj[td?.field] ? 'success' : 'danger'"
+              [value]="obj[td?.field] ? 'Ativo' : 'Inativo'"></p-tag>
+          </td>
+          }@else if (td.isAction) {
+          <td class="flex flex-row gap-2 h-full">
+            <p-button size="small" (click)="edit(obj)" icon="pi pi-pencil" [rounded]="true" [text]="true"
+              [raised]="true" severity="warning "></p-button>
+            <p-button size="small" (click)="del(obj, td?.api)" icon="pi pi-trash" [rounded]="true" [text]="true"
+              [raised]="true" severity="danger "></p-button>
+          </td>
+          }@else {<td>{{ obj[td?.field] | truncate:50 }}</td>}
+          }
+        </tr>
+      </ng-template>
+    </p-table>
+  </section>
 </section>

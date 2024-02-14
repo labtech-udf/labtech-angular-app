@@ -20,15 +20,16 @@ export class HomeAdminComponent implements OnInit {
     'welcome-5.svg'
   ];
   randomImageUrl: string | undefined;
-
+  msg = 'No mudou';
   constructor() { }
 
   ngOnInit(): void {
     const randomImage = this.imageNames[Math.floor(Math.random() * this.imageNames.length)];
     this.randomImageUrl = `assets/home/${randomImage}`;
-
+    console.log("iniciou ")
     this.auth.getUser().subscribe((p) => {
       console.log(p);
+      this.msg = p.message;
     })
   }
 

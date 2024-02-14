@@ -1,20 +1,28 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
+import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../../../../env/env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigsService {
-  private _api = `${environment.API_URL}`;
+
+  private _api = `${environment.API_URL}/private`;
+  private oauthService = inject(OAuthService);
+  private token = this.oauthService.getAccessToken();
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   // ODS - Objetivos de Desenvolvimento Sustentável
-  getListOds() {
-    return this.http.get<any>(`${this._api}/ods`)
+  getLists(type: string) {
+    return this.http.get<any>(`${this._api}/${type}`, {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      }
+    });
   }
 
 

@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -23,7 +23,8 @@ import { EventosService } from './eventos.service';
     TagModule,
     ConfirmPopupModule,
     ToastModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    NgStyle
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './eventos.component.html',
@@ -49,37 +50,40 @@ export class EventosComponent implements OnInit {
       console.error(data)
     })
   }
-
-  getStatus(event: Evento) {
-    switch (event.status) {
-      // C("Em construção"),
-      // AV("Avaliação"),
-      // R("Recusado"),
-      // IN("Inativo"),
-      // F("Finalizado"),
-      // AP("Aprovado");
+  getSeverity(status: any) {
+    console.log(status);
+    switch (status) {
+      case 'Avaliação':
+        return "";
+      case 'Em construção':
+        return "warning";
+      case 'Finalizado':
+        return "info";
+      case 'Inativo':
+        return "info";
+      case 'Recusado':
+        return "danger";
+      case 'Aprovado':
+        return "success";
       default:
-        return 'sucess';
-      // default(null)
-      //   Success,
-      //   Info,
-      //   Warning,
-      //   Danger
+        return '';
     }
   }
 
-  getDescricaoStatus(event: Evento) {
-    switch (event.status) {
-      case 'C':
-        return 'Em construção'
-      // C("Em construção"),
-      // AV("Avaliação"),
-      // R("Recusado"),
-      // IN("Inativo"),
-      // F("Finalizado"),
-      // AP("Aprovado");
-      default:
-        return 'Sem status'
+  getStyle(item: any) {
+    if (item.photo && item.photo.url) {
+      // Se a URL da foto não for nula, use a URL como plano de fundo
+      return {
+        'background-image': 'url(' + item.photo.url + ')',
+        'background-repeat': 'no-repeat',
+        'background-position': 'center',
+        'background-size': 'cover'
+      };
+    } else {
+      // Se a URL da foto for nula, use a cor hexadecimal como plano de fundo
+      return {
+        'background-color': item.cor
+      };
     }
   }
 

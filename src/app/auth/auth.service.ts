@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthConfig, JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { Observable } from 'rxjs';
 import { environment } from '../../env/env';
 
@@ -11,7 +12,6 @@ import { environment } from '../../env/env';
 
 export class AuthService {
   private api = `${environment.API_URL}`;
-
   constructor(
     private router: Router,
     private oauthService: OAuthService,
@@ -32,6 +32,7 @@ export class AuthService {
     console.log("ksalndkla")
     this.oauthService.configure(this.authConfigs);
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oauthService.refreshToken();
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
@@ -44,10 +45,13 @@ export class AuthService {
     setTimeout(() => {
       this.router.navigate(['/home']);
 
-    },500)
+    }, 500)
   }
 
   getUser(): Observable<any> {
+    console.log(
+      `Bearer ${this.oauthService.getAccessToken()}`
+    );
     return this.http.get<any>(`${this.api}/token`, {
       headers: {
         Authorization: `Bearer ${this.oauthService.getAccessToken()}`,

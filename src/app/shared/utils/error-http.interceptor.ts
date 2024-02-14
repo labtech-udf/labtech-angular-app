@@ -11,12 +11,11 @@ export const errorHttpInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
       if (error) {
         const status = error.status;
-        if (status == '0') {
+        if (status == '401') {
           theme.backgroundStored();
-          router.navigate(['/error'], { queryParams: { errorCode: error.status, message: error.statusText } })
-        } else if (status == '401') {
           router.navigate(['/error'], { queryParams: { errorCode: error.status, message: 'Você não tem permissão para realizar essa requisição' } })
         } else {
+          theme.backgroundStored();
           router.navigate(['/error'], { queryParams: { errorCode: error.status, message: error.status } })
         }
       }

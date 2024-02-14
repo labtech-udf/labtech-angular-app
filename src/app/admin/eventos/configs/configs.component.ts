@@ -23,7 +23,8 @@ export class ConfigsComponent implements OnInit {
   columnsODS: TableColumn[] = [];
 
   listODS() {
-    this.service.getListOds().subscribe((p) => {
+    this.service.getLists('listods').subscribe((p) => {
+      console.log(p);
       this.ods = p;
       this.columnsODS = [
         { field: 'name', header: 'Nome' },

@@ -1,8 +1,12 @@
 .table {
-  th {
+  ::ng-deep .p-datatable-thead {
     background: none;
-    padding-top: 0;
   }
+
+  th {
+    background: var(--surface-card);
+  }
+
   td {
     border: none;
   }
