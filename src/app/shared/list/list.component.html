@@ -1,4 +1,4 @@
-<section class="flex flex-column">
+<section class="flex flex-column surface-card">
   <p class="m-0 p-2 font-semibold">{{title}}</p>
   <section class="table w-full">
     <p-table [value]="list" [scrollable]="true" scrollHeight="300px" [styleClass]="'p-datatable-sm'">
@@ -16,7 +16,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-obj>
-        <tr>
+        <tr [ngClass]="{'inativo': !obj.status}">
           @for (td of columns; track $index) {
           @if(td.isBoolean){
           <td class="text-center">

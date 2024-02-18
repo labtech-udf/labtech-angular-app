@@ -1,6 +1,14 @@
 .table {
+  border-bottom-left-radius: .75rem;
+  border-bottom-right-radius: .75rem;
+  overflow: hidden;
+
   ::ng-deep .p-datatable-thead {
     background: none;
+  }
+
+  tr.inativo {
+    background: whitesmoke;
   }
 
   th {

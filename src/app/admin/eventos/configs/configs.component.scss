@@ -1,0 +1,24 @@
+.configs {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .content-list {
+    height: 100%;
+    width: 100%;
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+
+      .list {
+        overflow: hidden;
+        width: calc(100% / 2 - 10px);
+        max-width: calc(100% / 2 - 10px);
+        min-width: calc(100% / 2 - 10px);
+      }
+    }
+
+  }
+}

@@ -26,8 +26,6 @@ export class ToolbarComponent implements OnInit {
 
   items: MenuItem[] | undefined;
   ngOnInit() {
-    const user = this.oauth.getIdentityClaims();
-    console.log(user);
 
     this.items = [
       {
