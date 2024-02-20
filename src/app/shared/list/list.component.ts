@@ -7,7 +7,6 @@ import { NgClass } from '@angular/common';
 import { DialogService, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ConfigsService } from '../../admin/eventos/configs/configs.service';
-import { Pipemodules } from '../modules/pipes.module';
 import { ListModalComponent } from './list-modal/list-modal.component';
 @Component({
   selector: 'app-list',
@@ -15,7 +14,6 @@ import { ListModalComponent } from './list-modal/list-modal.component';
   imports: [
     TableModule,
     ButtonModule,
-    Pipemodules,
     TagModule,
     ScrollPanelModule,
     NgClass,

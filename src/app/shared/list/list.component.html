@@ -30,7 +30,7 @@
             <p-button size="small" (click)="del(obj, td?.api)" icon="pi pi-trash" [rounded]="true" [text]="true"
               [raised]="true" severity="danger "></p-button>
           </td>
-          }@else {<td>{{ obj[td?.field] | truncate:50 }}</td>}
+          }@else {<td>{{ obj[td?.field]}}</td>}
           }
         </tr>
       </ng-template>
