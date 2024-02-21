@@ -11,6 +11,7 @@ import { EventoDetalhesComponent } from './components/evento-detalhes/evento-det
 import { HomeComponent } from './home/home.component';
 import { PageHttpErrorComponent } from './layout/pages/page-http-error/page-http-error.component';
 import { PageNotFoundComponent } from './layout/pages/page-not-found/page-not-found.component';
+import { UsersComponent } from './admin/users/users.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,7 +23,8 @@ export const routes: Routes = [
       { path: '', component: HomeAdminComponent },
       { path: 'eventos', component: EventosComponent },
       { path: 'event-manager', component: CreateUpdateComponent },
-      { path: 'event-config', component: ConfigsComponent }
+      { path: 'event-config', component: ConfigsComponent },
+      { path: 'usuarios', component: UsersComponent }
     ]
   },
   {

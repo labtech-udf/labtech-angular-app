@@ -1,0 +1,111 @@
+<p-toast></p-toast>
+<section class="w-full users-list h-full">
+  <p-dataView #dv [value]="users" [layout]="layout" [paginator]="true" [rows]="8">
+    <ng-template pTemplate="header" styleClass="">
+      <section class="flex justify-content-between align-items-center">
+        <section>
+          <p-dataViewLayoutOptions styleClass=""></p-dataViewLayoutOptions>
+        </section>
+        @if (users !== undefined && users.length > 0) {
+        <section>
+          <!-- <p-button icon="pi pi-plus" [rounded]="true" severity="success"
+            (click)="navigation(null, 'create')"></p-button> -->
+          <p-button icon="pi pi-plus" label="Criar" severity="success" iconPos="right"></p-button>
+          <!-- <p-button icon="pi pi-plus" label="Criar um novo evento" severity="success"
+            (click)="navigation(null, 'create')" iconPos="right"></p-button> -->
+        </section>
+        }
+      </section>
+    </ng-template>
+    <ng-template let-user pTemplate="list">
+      <p-scrollPanel [style]="{ width: '100%', height: '100%' }">
+        <div class="grid grid-nogutter">
+          @for (item of user; track $index;) {
+          klkjh
+          }@empty {
+          <section class="w-full h-full flex flex-column gap-2 justify-content-center align-items-center">
+            <section class="w-full md:w-3">
+              <img src="assets/start/start.svg" class="w-full h-full">
+            </section>
+            <p-button label="Novo" [text]="true" icon="pi pi-plus" [raised]="true" severity="success"></p-button>
+            <p class="font-bold text-4xl">Ainda não existem eventos cadastrados, crie um novo!</p>
+          </section>
+
+          }
+        </div>
+      </p-scrollPanel>
+    </ng-template>
+    <ng-template let-user pTemplate="grid">
+      <p-scrollPanel [style]="{ width: '100%', height: '100%' }">
+        <div class="grid grid-nogutter">
+          @for (item of user; track $index;) {
+          <div class="col-12 sm:col-6 lg:col-12 user-card xl:col-2 p-2">
+            <div class="h-full w-full cont  bg-no-repeat bg-top surface-border border-round border-1"
+              [style.background]="'url(' + item.photo?.url + ')'" [style.backgroundSize]="'100% 50%'">
+              <section class="top">
+                <div class="info">
+                  <p-tag [value]="item.username" [severity]="'sucess'"></p-tag>
+                  <section class="actions">
+                    <button class="reset edit">
+                      <i class="pi pi-user-edit"></i>
+                    </button>
+                    <button class="reset del">
+                      <i class="pi pi-trash"></i>
+                    </button>
+                    <button class="reset info">
+                      <i class="pi pi-info"></i>
+                    </button>
+                  </section>
+                </div>
+                <section class="foto">
+                  @if(item.photo?.url){
+                  <img loading="eager" class="w-7rem shadow-2 border-circle h-7rem" [src]="item.photo?.url" />
+                  }@else {
+                  <section class="w-10 shadow-2 border-round h-9rem" [style.background]="item.cor"></section>
+                  }
+                </section>
+              </section>
+              <section class="content">
+                <p class=""> {{ (item.firstName ?? 'Nome') + ' ' + (item.lastName ?? 'Sobrenome') }}</p>
+                <p class="font-bold mail">{{ item.email ?? 'email@email.com' }}</p>
+              </section>
+            </div>
+            <!-- <div class="py-2 px-3 bg-no-repeat img-card bg-top border-1 h-full surface-border border-round"
+              [style.background]="'url(' + item.photo?.url + ')'" [style.backgroundSize]="'100% 50%'">
+              <div class="flex flex-wrap align-items-center justify-content-between gap-2">
+                <span class="flex align-items-center gap-2 font-semibold name">
+                  {{ (item.firstName ?? 'Nome') + ' ' + (item.lastName ?? 'Sobrenome') }}
+                </span>
+                <p-tag [value]="item.username" [severity]="'sucess'"></p-tag>
+              </div>
+              <div class="flex flex-column align-items-center gap-3">
+                @if(item.photo?.url){
+                <img loading="eager" class="w-10rem shadow-2 border-circle h-10rem" [src]="item.photo?.url" />
+                }@else {
+                <section class="w-10 shadow-2 border-round h-9rem" [style.background]="item.cor"></section>
+                }
+                <div class="text-xl h-full font-bold">
+                  <p class="text-xl h-full font-bold">{{ item.email }}</p>
+                </div>
+              </div>
+              <div class="flex w-full flex-row justify-content-between">
+                <p-button size="small" icon="pi pi-pencil" [text]="true" [raised]="true" severity="success"></p-button>
+                <p-confirmPopup></p-confirmPopup>
+                <p-button size="small" icon="pi pi-trash" [text]="true" [raised]="true" severity="danger"></p-button>
+              </div>
+            </div> -->
+          </div>
+          }@empty {
+          <section class="w-full h-full flex flex-column gap-2 justify-content-center align-items-center">
+            <section class="w-full md:w-3">
+              <img src="assets/start/start.svg" class="w-full h-full">
+            </section>
+            <p-button label="Novo" [text]="true" icon="pi pi-plus" [raised]="true" severity="success"></p-button>
+            <p class="font-bold text-4xl">Ainda não existem eventos cadastrados, crie um novo!</p>
+          </section>
+          }
+        </div>
+      </p-scrollPanel>
+    </ng-template>
+  </p-dataView>
+</section>

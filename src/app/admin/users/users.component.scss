@@ -1,0 +1,143 @@
+.users-list {
+  ::ng-deep .p-dataview {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .p-dataview-content {
+      height: calc(100% - 9.25rem);
+    }
+
+    .p-dataview-emptymessage {
+      display: none;
+    }
+
+    .p-dataview-header {
+      border-top-right-radius: 0.75rem;
+      border-top-left-radius: 0.75rem;
+      height: 5rem;
+      background: none;
+      border: none;
+    }
+
+    .p-paginator {
+      height: 4.25rem;
+    }
+  }
+
+  .user-card {
+    .cont {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top {
+      width: 100%;
+      height: 50%;
+      backdrop-filter: blur(1px);
+      background-color: hsla(0, 0%, 100%, .1);
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem .5rem .25rem .5rem;
+
+        .name {
+          padding: .25rem;
+          background-color: whitesmoke;
+          border-radius: 7px;
+          text-align: center;
+          vertical-align: middle;
+          font-size: small;
+          font-weight: 700;
+        }
+
+        .actions {
+          display: flex;
+          gap: .25rem;
+
+          button.reset {
+            background-color: whitesmoke;
+            border: none;
+            padding: .25rem .5rem;
+            border-radius: 7px;
+            cursor: pointer;
+
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02),
+              0px 0px 2px rgba(0, 0, 0, 0.05),
+              0px 1px 4px rgba(0, 0, 0, 0.08);
+
+            i {
+              font-size: small;
+            }
+
+            i.pi-trash {
+              color: var(--red-500);
+            }
+
+            i.pi-user-edit {
+              color: var(--orange-500);
+            }
+
+            i.pi-info {
+              display: flex;
+              align-items: center;
+              color: var(--blue-500);
+            }
+
+            &:hover {
+              opacity: 1;
+
+              i {
+                color: white;
+              }
+            }
+          }
+
+          button.del:hover {
+            background: var(--red-400);
+          }
+
+          button.edit:hover {
+            background: var(--orange-400);
+          }
+
+          button.info:hover {
+            background: var(--blue-400);
+          }
+        }
+
+      }
+
+      .foto {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        img {
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: .5rem;
+    padding: 0.25rem .5rem 1rem .5rem;
+
+    p {
+      margin: 0;
+    }
+
+    p.mail {
+      font-size: small;
+    }
+  }
+
+}

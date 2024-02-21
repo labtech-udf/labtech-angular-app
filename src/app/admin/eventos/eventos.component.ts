@@ -16,8 +16,6 @@ import { EventosService } from './eventos.service';
   selector: 'app-eventos',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
     DataViewModule,
     ButtonModule,
     TagModule,

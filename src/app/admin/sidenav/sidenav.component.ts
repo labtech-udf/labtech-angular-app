@@ -42,8 +42,14 @@ export class SidenavComponent implements OnInit {
           { label: 'Settings', icon: 'pi pi-fw pi-cog', action: () => this.navigateTo('/admin/event-config') },
         ]
       },
+      {
+        label: 'users', icon: 'pi pi-user', subitems: [
+          { label: 'Lista de usuarios', icon: 'pi pi-fw pi-list', action: () => this.navigateTo('/admin/usuarios') },
+          { label: 'Settings', icon: 'pi pi-fw pi-cog', action: () => this.navigateTo('/admin/event-config') },
+        ]
+      },
       { label: 'Documentation', icon: 'pi pi-fw pi-file' },
-      { label: 'Settings', icon: 'pi pi-fw pi-cog' }
+      { label: 'Settings', icon: 'pi pi-fw pi-cog'}
     ]
   }
   navigateTo(route: string): void {
