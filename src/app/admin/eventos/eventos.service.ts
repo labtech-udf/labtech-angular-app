@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 
 import { environment } from '../../../env/env';
 import { Evento } from '../../interfaces/Evento';
@@ -10,14 +10,20 @@ import { Evento } from '../../interfaces/Evento';
 })
 export class EventosService {
   private api = `${environment.API_URL}/public/getAllEvents`;
+  eventos$: Observable<Evento[]> | undefined;
 
   constructor(private http: HttpClient) { }
 
-  async getList() {
-    return this.http.get<any>(`${this.api}`);
+  getEventos(): Observable<Evento[]> {
+    if (!this.eventos$) {
+      this.eventos$ = this.http.get<Evento[]>(this.api).pipe(
+        shareReplay(1)
+      )
+    }
+    return this.eventos$;
   }
 
-  async getByIds(id: number) {
+  async getById(id: number) {
     return this.http.get<any>(`${this.api}/${id}`);
   }
 

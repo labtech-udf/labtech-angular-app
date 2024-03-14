@@ -1,10 +1,19 @@
 <section class="p-3">
   <section class="px-7 py-5 flex flex-column gap-3">
-    <h1>{{msg}}</h1>
     <section>
-      <app-carousel [obj]="eventos" />
+      <app-carousel [obj]="eventos$" />
+    </section>
+    <section class="filter">
+      <section class="search shadow-2">
+        <i class="pi pi-search"></i>
+        <input class="srch" type="text" placeholder="Procurar eventos">
+      </section>
     </section>
     <section class="flex flex-column gap-3">
+      <app-carousel [objFilter]="filter" />
+      <app-carousel [objFilter]="filter" />
+      <app-carousel [objFilter]="filter" />
+      <app-carousel [objFilter]="filter" />
       <app-carousel [objFilter]="filter" />
     </section>
   </section>

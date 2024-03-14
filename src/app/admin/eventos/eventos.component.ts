@@ -1,4 +1,4 @@
-import { NgFor, NgIf, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -29,7 +29,7 @@ import { EventosService } from './eventos.service';
   styleUrl: './eventos.component.scss'
 })
 export class EventosComponent implements OnInit {
-  eventos!: Evento[];
+  eventos$: Evento[] = []
   layout: 'list' | 'grid' = 'grid';
   constructor(
     private service: EventosService,
@@ -43,9 +43,8 @@ export class EventosComponent implements OnInit {
   }
 
   async load() {
-    (await this.service.getList()).subscribe(data => {
-      this.eventos = data;
-      console.error(data)
+    this.service.getEventos().subscribe((evento: Evento[]) => {
+      this.eventos$ = evento;
     })
   }
   getSeverity(status: any) {

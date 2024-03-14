@@ -1,12 +1,12 @@
 <p-toast></p-toast>
 <section class="w-full h-full">
-  <p-dataView #dv [value]="eventos" [layout]="layout" [paginator]="true" [rows]="8">
+  <p-dataView #dv [value]="eventos$" [layout]="layout" [paginator]="true" [rows]="8">
     <ng-template pTemplate="header" styleClass="">
       <section class="flex justify-content-between align-items-center">
         <section>
           <p-dataViewLayoutOptions styleClass=""></p-dataViewLayoutOptions>
         </section>
-        @if (eventos !== undefined && eventos.length > 0) {
+        @if (eventos$ !== undefined && eventos$.length > 0) {
         <section>
           <!-- <p-button icon="pi pi-plus" [rounded]="true" severity="success"
             (click)="navigation(null, 'create')"></p-button> -->

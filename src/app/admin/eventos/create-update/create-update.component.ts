@@ -63,7 +63,7 @@ export class CreateUpdateComponent implements OnInit {
     this.route.queryParams.subscribe(async (params) => {
       const id = params['id'];
       if (id) {
-        (await this.service.getByIds(id)).subscribe(async data => {
+        (await this.service.getById(id)).subscribe(async data => {
           if (data) {
             this.evento = data;
             console.error(data);

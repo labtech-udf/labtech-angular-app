@@ -1,0 +1,25 @@
+.filter {
+  display: flex;
+  justify-content: space-between;
+
+  .search {
+    background-color: var(--surface-ground);
+    display: flex;
+    color: var(--text-primary);
+    gap: .5rem;
+    // height: 3rem;
+    width: 20%;
+    padding: .5rem;
+    border-radius: .75rem;
+    overflow: hidden;
+    height: 2.5rem;
+    align-items: center;
+
+  }
+
+  input.srch {
+    all: unset;
+    height: 100%;
+    width: 100%;
+  }
+}
