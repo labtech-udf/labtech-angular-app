@@ -1,20 +1,36 @@
 <section class="p-3">
-  <section class="px-7 py-5 flex flex-column gap-3">
+  <section class="px-7 pb-5 flex flex-column gap-3">
     <section>
+      @if (eventos$.length > 0) {
       <app-carousel [obj]="eventos$" />
+      } @else{
+      <p-skeleton height="27rem"></p-skeleton>
+      }
     </section>
     <section class="filter">
       <section class="search shadow-2">
         <i class="pi pi-search"></i>
         <input class="srch" type="text" placeholder="Procurar eventos">
       </section>
+      <button class="filt">
+        <i class="pi pi-th-large"></i>
+        <p>Categorias</p>
+      </button>
+      <button class="filt">
+        <i class="pi pi-sliders-v"></i>
+        <p>Categorias</p>
+      </button>
+      <button class="filt">
+        <i class="pi pi-map-marker"></i>
+        <p>Local</p>
+      </button>
     </section>
     <section class="flex flex-column gap-3">
+      @if (skel.cards) {
+      <p-skeleton height="10rem"></p-skeleton>
+      } @else{
       <app-carousel [objFilter]="filter" />
-      <app-carousel [objFilter]="filter" />
-      <app-carousel [objFilter]="filter" />
-      <app-carousel [objFilter]="filter" />
-      <app-carousel [objFilter]="filter" />
+      }
     </section>
   </section>
 </section>

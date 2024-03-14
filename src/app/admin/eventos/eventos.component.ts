@@ -48,7 +48,6 @@ export class EventosComponent implements OnInit {
     })
   }
   getSeverity(status: any) {
-    console.log(status);
     switch (status) {
       case 'Avaliação':
         return "";

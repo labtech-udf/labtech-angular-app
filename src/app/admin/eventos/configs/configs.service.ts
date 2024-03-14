@@ -10,7 +10,7 @@ import { environment } from '../../../../env/env';
 })
 export class ConfigsService {
 
-  private _api = `${environment.API_URL}/private`;
+  private _api = `${environment.API_URL}`;
   private oauthService = inject(OAuthService);
   private token = this.oauthService.getAccessToken();
 
@@ -18,13 +18,16 @@ export class ConfigsService {
 
   // ODS - Objetivos de Desenvolvimento Sustentável
   getLists(type: string) {
-    return this.http.get<any>(`${this._api}/${type}`, {
+    return this.http.get<any>(`${this._api}/private/${type}`, {
       headers: {
         Authorization: `Bearer ${this.token}`,
       }
     });
   }
-
+  
+  getPublic() {
+    return this.http.get<any>(`${this._api}/public/listods/active`);
+  }
 
   //Metodos utilizaveis
   async delete(id: number, api?: string) {

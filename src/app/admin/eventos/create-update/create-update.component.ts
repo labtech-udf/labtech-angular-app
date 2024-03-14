@@ -7,7 +7,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
+import { MultiSelectModule } from 'primeng/multiselect';
 import { Evento } from '../../../interfaces/Evento';
+import { ODS } from '../../../interfaces/Ods';
+import { ConfigsService } from '../configs/configs.service';
 import { EventosService } from '../eventos.service';
 
 
@@ -21,7 +24,8 @@ import { EventosService } from '../eventos.service';
     InputTextareaModule,
     InputTextModule,
     CalendarModule,
-    NgxColorsModule
+    NgxColorsModule,
+    MultiSelectModule
   ],
   templateUrl: './create-update.component.html',
   styleUrl: './create-update.component.scss'
@@ -33,16 +37,21 @@ export class CreateUpdateComponent implements OnInit {
   loading: boolean = false;
   photo!: File;
   imageUrl: string | null = null;
+
+  ods: ODS[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: EventosService,
+    private config: ConfigsService
   ) {
     this.constructForm();
   }
   async ngOnInit(): Promise<void> {
     this.skeleton = true;
     await this.load();
+    await this.loadODS();
     this.skeleton = false;
   }
 
@@ -56,7 +65,9 @@ export class CreateUpdateComponent implements OnInit {
       dateHora: new FormControl(null),
       address: new FormControl(null),
       cor: new FormControl(null, validColorValidator()),
+      ods: new FormControl([]),
     })
+
   }
 
   async load(): Promise<void> {
@@ -79,6 +90,14 @@ export class CreateUpdateComponent implements OnInit {
       }
     });
   }
+
+  loadODS() {
+    this.config.getPublic()
+      .subscribe((p) => {
+        this.ods = p;
+      })
+  }
+
   setForm(data: any) {
     this.form.patchValue(data);
 
@@ -96,7 +115,7 @@ export class CreateUpdateComponent implements OnInit {
     }
   }
   async save() {
-    console.error(this.photo)
+    console.log(this.form.getRawValue())
     this.loading = true;
     console.error(this.form.valid)
     if (this.form.valid) {

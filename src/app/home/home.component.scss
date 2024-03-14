@@ -1,25 +1,43 @@
 .filter {
   display: flex;
   justify-content: space-between;
+  gap: 5%;
+  width: 70%;
 
   .search {
-    background-color: var(--surface-ground);
+    background-color: var(--highlight-bg);
     display: flex;
-    color: var(--text-primary);
     gap: .5rem;
-    // height: 3rem;
-    width: 20%;
+    width: 100%;
     padding: .5rem;
-    border-radius: .75rem;
+    border-radius: var(--border-radius);
     overflow: hidden;
     height: 2.5rem;
     align-items: center;
 
+    i {
+      color: var(--text-color-secondary);
+    }
+
+    color: var(--text-color);
   }
 
   input.srch {
     all: unset;
     height: 100%;
     width: 100%;
+  }
+
+  button.filt {
+    display: flex;
+    gap: .5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    background: none;
   }
 }

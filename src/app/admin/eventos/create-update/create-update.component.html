@@ -5,7 +5,7 @@
         <i class="pi pi-angle-left"></i>
         <p class="m-0">Voltar</p>
       </span>
-      <p-button [loading]="loading" severity="success"(click)="save()">
+      <p-button [loading]="loading" severity="success" (click)="save()">
         <p class="m-0 font-bold text-base">Salvar</p>
       </p-button>
     </section>
@@ -54,6 +54,14 @@
           <p><i class="pi pi-calendar"></i> {{getData()}}</p>
           <p><i class="pi pi-clock"></i> {{getHora()}}</p>
         </section>
+        <section class="w-full">
+          <section class="flex flex-column gap-1 w-auto">
+            <p class="m-0">Objetivos de Desenvolvimento Sustentável</p>
+            <p-multiSelect inputId="ods" [options]="ods" formControlName="ods" [filter]="true" optionLabel="name"
+              placeholder="ODS"></p-multiSelect>
+          </section>
+        </section>
+
         <section class="w-full h-full">
           <p class="m-0 text-base font-normal">Descrição do evento:</p>
           <textarea pInputTextarea formControlName="description"

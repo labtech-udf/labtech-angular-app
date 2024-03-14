@@ -9,14 +9,14 @@ import { Evento } from '../../interfaces/Evento';
   providedIn: 'root'
 })
 export class EventosService {
-  private api = `${environment.API_URL}/public/getAllEvents`;
+  private api = `${environment.API_URL}`;
   eventos$: Observable<Evento[]> | undefined;
 
   constructor(private http: HttpClient) { }
 
   getEventos(): Observable<Evento[]> {
     if (!this.eventos$) {
-      this.eventos$ = this.http.get<Evento[]>(this.api).pipe(
+      this.eventos$ = this.http.get<Evento[]>(`${this.api}/public/getAllEvents`).pipe(
         shareReplay(1)
       )
     }
@@ -24,11 +24,10 @@ export class EventosService {
   }
 
   async getById(id: number) {
-    return this.http.get<any>(`${this.api}/${id}`);
+    return this.http.get<any>(`${this.api}/public/evento/${id}`);
   }
 
   createEvento(evento: Evento, photo: File): Observable<any> {
-    console.error(evento)
     const formData = new FormData();
     formData.append('file', photo);
     formData.append('evento', JSON.stringify({ ...evento }));
