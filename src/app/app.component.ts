@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   bgValue: string | undefined;
   ngOnInit(): void {
     this.theme.background$.subscribe((p) => {
-      this.bgValue = p;
+      this.bgValue = p != null ? p : 'var(--cor_1)';
       this.cdr.detectChanges();
     })
   }

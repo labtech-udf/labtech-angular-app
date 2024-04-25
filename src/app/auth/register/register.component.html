@@ -1,4 +1,57 @@
-<section class="flex justify-content-center flex-column gap-8 h-full align-items-center">
-  <p class="text-3xl">register works!</p>
-  <p class="text-8xl font-bold text-red-600">Comic Sans</p>
+<section class="register">
+  <section class="form">
+    <section class="w-full txt">
+      <p class="font-bold m-0">Cadastre-se</p>
+    </section>
+    <form [formGroup]="form" class="w-full">
+      <section class="form_values">
+        <span class="p-float-label">
+          <input type="text" id="username" pInputText formControlName="name" />
+          <label for="username">Nome completo</label>
+        </span>
+        <span class="p-float-label">
+          <input type="text" id="email" pInputText formControlName="email" />
+          <label for="email">Email</label>
+        </span>
+        <section class="pass flex flex-column gap-5 md:flex-row">
+          <span class="p-float-label">
+            <p-password formControlName="password" [toggleMask]="true" promptLabel="Digite a senha"
+              weakLabel="Muito simples" mediumLabel="Complexidade média" strongLabel="Senha complexa">
+              <ng-template pTemplate="header">
+                <h6>Digite a senha</h6>
+              </ng-template>
+              <ng-template pTemplate="footer">
+                <p-divider></p-divider>
+                <p class="mt-2">Sugestões</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>Pelo menos uma minúscula</li>
+                  <li>Pelo menos uma maiúscula</li>
+                  <li>Pelo menos um número</li>
+                  <li>No minimo 8 caracteres</li>
+                  <li>Um caracter especial (!, #, $, %, &)</li>
+                </ul>
+              </ng-template>
+            </p-password>
+            <label for="password">Senha</label>
+          </span>
+          <span class="p-float-label">
+            <p-password formControlName="confirm_pass" [toggleMask]="true" [feedback]="false">
+            </p-password>
+            <label for="password">Confirme a senha</label>
+            @if (form.controls['confirm_pass'].hasError('passwordMismatch')) {
+            <small style="color: #e24c4c;">As senhas não coincidem</small>
+            }
+          </span>
+        </section>
+      </section>
+    </form>
+    <section class="btn">
+      <button [disabled]="form.invalid" (click)="cad()" class="cad-btn">
+        <p>criar conta</p>
+      </button>
+    </section>
+  </section>
+  <section class="img">
+    <img class="student" src="./assets/vetores/register.svg" alt="" loading="">
+  </section>
 </section>

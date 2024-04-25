@@ -20,21 +20,6 @@ export const appConfig: ApplicationConfig = {
       // withInterceptors([errorHttpInterceptor])
     ),
     provideOAuthClient(),
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: (o: OAuthService) => {
-    //     return () => {
-    //       initOAuth(o);
-
-    //     }
-    //   },
-    //   multi: true,
-    //   deps: [
-    //     OAuthService,
-    //     PLATFORM_ID
-    //   ]
-    // },
-
     MessageService,
     ThemeService,
     // { provide: HTTP_INTERCEPTORS, useValue: errorHttpInterceptor, multi: true }

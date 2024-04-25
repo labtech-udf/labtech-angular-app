@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { Observable } from 'rxjs';
 import { environment } from '../../env/env';
+import { Usuario } from '../interfaces/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -12,49 +11,18 @@ import { environment } from '../../env/env';
 
 export class AuthService {
   private api = `${environment.API_URL}`;
+
   constructor(
     private router: Router,
-    private oauthService: OAuthService,
     private http: HttpClient
   ) {
-    this.initsOAuth();
-  }
-
-  authConfigs: AuthConfig = {
-    issuer: 'http://localhost:8090/realms/labtech-events-realm',
-    tokenEndpoint: 'http://localhost:8090/realms/labtech-events-realm/protocol/openid-connect/token',
-    redirectUri: 'http://localhost:4200/admin',
-    clientId: 'labtech-events-client',
-    responseType: 'code',
-    scope: 'openid profile',
-  };
-  initsOAuth() {
-    console.log("ksalndkla")
-    this.oauthService.configure(this.authConfigs);
-    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
-    this.oauthService.refreshToken();
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
-  }
-
-  initOAuth() {
-    this.oauthService.initImplicitFlow();
-  }
-
-  async logOut() {
-    this.oauthService.logOut();
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-
-    }, 500)
   }
 
   getUser(): Observable<any> {
-    console.log(
-      `Bearer ${this.oauthService.getAccessToken()}`
-    );
+
     return this.http.get<any>(`${this.api}/token`, {
       headers: {
-        Authorization: `Bearer ${this.oauthService.getAccessToken()}`,
+        Authorization: `Bearer `,
       },
     });
   }
@@ -62,5 +30,21 @@ export class AuthService {
   getNoUser(): Observable<any> {
     return this.http.get<any>(`${this.api}/public/get`);
   }
+
+  register(usr: Usuario) {
+    console.log(`${this.api}/public/auth/register`);
+    console.log(usr);
+    return this.http.post<any>(`${this.api}/public/auth/register`, usr);
+  }
+
+  login(usr: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': '*/*'
+    });
+    return this.http.post(`${this.api}/public/login`, usr, { headers: headers });
+  }
+
+
 }
 

@@ -9,7 +9,7 @@ export class ThemeService {
   // private prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   // Thema do navegador 
 
-  private backgroundSubject = new BehaviorSubject<string>('null');
+  private backgroundSubject = new BehaviorSubject<string>('var(--cor_1)');
   public background$ = this.backgroundSubject.asObservable();
 
 
@@ -30,7 +30,7 @@ export class ThemeService {
   backgroundStored() {
     if (typeof window !== 'undefined' && typeof window.sessionStorage !== 'undefined') {
       const value = sessionStorage.getItem('background');
-      this.backgroundSubject.next(value ? value : '#FFF');
+      this.backgroundSubject.next(value ? value : 'var(--cor_1)');
     }
   }
 

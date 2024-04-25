@@ -4,16 +4,22 @@
 @import "primeng/resources/themes/lara-light-indigo/theme.css";
 @import "primeng/resources/primeng.css";
 
+
+:root {
+  --cor_padrao: #6891f2;
+  --cor_1: #F9F7F7;
+  --cor_2: #DBE2EF;
+  --cor_3: #3F72AF;
+  --cor_4: #112D4E;
+}
+
 html,
 body {
   height: 100vh;
+  background: var(--cor_1);
 }
 
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-}
-
-:root {
-  --cor_padrao: #6891f2
 }

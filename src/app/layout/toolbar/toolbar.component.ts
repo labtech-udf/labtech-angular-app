@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { OAuthService } from 'angular-oauth2-oidc';
+
 import { MenuItem } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { TagModule } from 'primeng/tag';
@@ -21,7 +21,6 @@ import { ThemeService } from '../../shared/utils/theme.service';
 export class ToolbarComponent implements OnInit {
   private router = inject(Router);
   private theme = inject(ThemeService);
-  private oauth = inject(OAuthService);
   private auth = inject(AuthService);
 
   items: MenuItem[] | undefined;
@@ -39,7 +38,7 @@ export class ToolbarComponent implements OnInit {
         label: 'login',
         icon: 'pi pi-sign-in',
         command: () => {
-          this.auth.initOAuth();
+          this.actions('login');
         }
       },
       {
@@ -56,7 +55,7 @@ export class ToolbarComponent implements OnInit {
         label: 'Sair',
         icon: 'pi pi-sign-out',
         command: () => {
-          this.logout();
+          // this.logout();
         }
       }
     ]
@@ -65,30 +64,22 @@ export class ToolbarComponent implements OnInit {
   actions(rota?: string) {
     switch (rota) {
       case 'cad':
-        this.theme.setBackground('linear-gradient(225deg, #ffffff 55%, #3f83f0 88%)');
+        // this.theme.setBackground('linear-gradient(225deg, #ffffff 55%, #3f83f0 88%)');
         this.router.navigate(['auth-register']);
         break;
       case 'login':
-        this.theme.setBackground('linear-gradient(43deg, #ffffff 56%, #3f83f0 100%)');
+        // this.theme.setBackground('linear-gradient(43deg, #ffffff 56%, #3f83f0 100%)');
         this.router.navigate(['auth-login']);
         break;
       case 'adm':
-        this.theme.setBackground('linear-gradient(180deg, #ffffff 55%, #3f83f0 88%)');
+        // this.theme.setBackground('linear-gradient(180deg, #ffffff 55%, #3f83f0 88%)');
         this.router.navigate(['admin']);
         break;
       default:
-        this.theme.setBackground('#FFF');
+        this.theme.setBackground('var(--cor_1)');
         this.router.navigate(['']);
         break;
     }
-  }
-
-  private logout() {
-    this.auth.logOut();
-  }
-
-  private login() {
-    this.auth.initOAuth();
   }
 
 }
