@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { routes } from './app.routes';
+import { UtilsService } from './shared/Utils/utils.service';
 import { ThemeService } from './shared/utils/theme.service';
 
 
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideOAuthClient(),
     MessageService,
     ThemeService,
+    UtilsService
     // { provide: HTTP_INTERCEPTORS, useValue: errorHttpInterceptor, multi: true }
   ]
 };

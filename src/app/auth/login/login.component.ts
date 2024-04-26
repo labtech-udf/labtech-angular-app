@@ -1,8 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { ToastModule } from 'primeng/toast';
+import { UtilsService } from '../../shared/Utils/utils.service';
 import { ThemeService } from '../../shared/utils/theme.service';
 import { AuthService } from '../auth.service';
 @Component({
@@ -12,16 +15,19 @@ import { AuthService } from '../auth.service';
     PasswordModule,
     ReactiveFormsModule,
     InputTextModule,
-    DividerModule
+    DividerModule,
+    ToastModule
   ],
+  providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
   private theme = inject(ThemeService);
   private auth = inject(AuthService);
+  private utilsService = inject(UtilsService);
   form!: FormGroup;
-  constructor() {
+  constructor(private messageService: MessageService) {
     this.form = new FormGroup({
       email: new FormControl(),
       password: new FormControl()
@@ -33,16 +39,44 @@ export class LoginComponent implements OnInit {
 
   }
   send() {
-    console.log(this.form.getRawValue());
     const usr = this.form.getRawValue();
-
     this.auth.login(usr)
       .subscribe((p) => {
-        if (p)
-          console.log(p)
+        if (p) {
+          this.getUser(p);
+        }
+      },
+        (error) => {
+          console.log(error)
+          let severity = 'error';
+          let summary = '';
+          if (error.status >= 400 && error.status < 500) {
+            summary = 'Não autorizado';
+          } else if (error.status >= 500) {
+            summary = 'Erro';
+          }
+          this.showMsg(severity, summary, error.error.message);
+        })
+  }
+  private getUser(usr: any) {
+    this.auth.getUser(usr)
+      .subscribe((p) => {
+        // this.showMsg('success', 'Bem vindo', p.name);
       })
   }
+
+
+  
   cad() {
 
+  }
+
+  showMsg(severity: string, summary: string, detail: string) {
+    console.log('dsdsa', severity, summary, detail)
+    this.messageService.add({
+      severity: severity,
+      summary: summary,
+      detail: detail
+    });
   }
 }

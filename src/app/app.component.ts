@@ -7,14 +7,14 @@ import { FooterComponent } from "./layout/footer/footer.component";
 import { LayoutComponent } from "./layout/layout.component";
 import { ToolbarComponent } from "./layout/toolbar/toolbar.component";
 import { ThemeService } from './shared/utils/theme.service';
-
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [ConfirmationService, MessageService],
-  imports: [CommonModule, RouterOutlet, ToolbarComponent, ToastModule, FooterComponent, LayoutComponent]
+  imports: [CommonModule, RouterOutlet, ToolbarComponent,
+     ToastModule, FooterComponent, LayoutComponent]
 })
 export class AppComponent implements OnInit {
   private theme = inject(ThemeService);

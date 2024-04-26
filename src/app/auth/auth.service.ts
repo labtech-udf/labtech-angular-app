@@ -17,13 +17,30 @@ export class AuthService {
     private http: HttpClient
   ) {
   }
+  login(usr: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': '*/*'
+    });
+    return this.http.post(
+      `${this.api}/public/login`,
+      usr,
+      { headers: headers }
+    );
+  }
 
-  getUser(): Observable<any> {
+  getUser(dados: any): Observable<any> {
+    console.log(dados);
 
-    return this.http.get<any>(`${this.api}/token`, {
+    if (!dados.token) {
+      throw new Error('Missing token');
+    }
+
+    const url = `${this.api}/private/getUser?email=${encodeURIComponent(dados.email)}`;
+    return this.http.get<any>(url, {
       headers: {
-        Authorization: `Bearer `,
-      },
+        Authorization: `Bearer ${dados.token}`
+      }
     });
   }
 
@@ -37,13 +54,6 @@ export class AuthService {
     return this.http.post<any>(`${this.api}/public/auth/register`, usr);
   }
 
-  login(usr: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': '*/*'
-    });
-    return this.http.post(`${this.api}/public/login`, usr, { headers: headers });
-  }
 
 
 }

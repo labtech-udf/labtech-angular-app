@@ -27,10 +27,10 @@ export class HomeAdminComponent implements OnInit {
     const randomImage = this.imageNames[Math.floor(Math.random() * this.imageNames.length)];
     this.randomImageUrl = `assets/home/${randomImage}`;
     console.log("iniciou ")
-    this.auth.getUser().subscribe((p) => {
-      console.log(p);
-      this.msg = p.message;
-    })
+    // this.auth.getUser().subscribe((p) => {
+    //   console.log(p);
+    //   this.msg = p.message;
+    // })
   }
 
 }
