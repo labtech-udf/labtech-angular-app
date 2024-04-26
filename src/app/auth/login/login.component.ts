@@ -38,16 +38,19 @@ export class LoginComponent implements OnInit {
     this.theme.backgroundStored();
 
   }
+
   send() {
     const usr = this.form.getRawValue();
+
     this.auth.login(usr)
-      .subscribe((p) => {
-        if (p) {
-          this.getUser(p);
-        }
-      },
-        (error) => {
-          console.log(error)
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            this.getUser(response);
+          }
+        },
+        error: (error) => {
+          console.error(error);
           let severity = 'error';
           let summary = '';
           if (error.status >= 400 && error.status < 500) {
@@ -55,18 +58,24 @@ export class LoginComponent implements OnInit {
           } else if (error.status >= 500) {
             summary = 'Erro';
           }
-          this.showMsg(severity, summary, error.error.message);
-        })
+          this.showMsg(severity, summary, error.error?.message);
+        }
+      });
   }
+
   private getUser(usr: any) {
     this.auth.getUser(usr)
-      .subscribe((p) => {
-        // this.showMsg('success', 'Bem vindo', p.name);
-      })
+      .subscribe({
+        next: (user) => {
+          this.showMsg('success', 'Bem vindo', user.name);
+        },
+        error: (error) => {
+          console.error(error);
+          this.showMsg('error', 'Erro ao recuperar usuário', error.error?.message); // Use optional chaining
+        }
+      });
   }
 
-
-  
   cad() {
 
   }
