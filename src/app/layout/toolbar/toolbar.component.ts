@@ -22,10 +22,14 @@ export class ToolbarComponent implements OnInit {
   private router = inject(Router);
   private theme = inject(ThemeService);
   private auth = inject(AuthService);
-
+  imageNames = [
+    'user-1.svg',
+    'user-2.svg',
+    'user-3.svg',
+  ];
+  randomImageUrl: string | undefined;
   items: MenuItem[] | undefined;
   ngOnInit() {
-
     this.items = [
       {
         label: 'Cadastro',
@@ -80,6 +84,11 @@ export class ToolbarComponent implements OnInit {
         this.router.navigate(['']);
         break;
     }
+  }
+
+  private getImg() {
+    const randomImage = this.imageNames[Math.floor(Math.random() * this.imageNames.length)];
+    this.randomImageUrl = `assets/home/${randomImage}`;
   }
 
 }

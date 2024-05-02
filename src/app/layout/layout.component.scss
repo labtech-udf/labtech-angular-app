@@ -1,4 +1,15 @@
-.rout {
-  height: auto;
-  min-height: calc(100dvh - 4rem);
+.layout {
+  .progressbar {
+    height: .1875rem;
+
+    ::ng-deep .p-progressbar .p-progressbar-value {
+      background: var(--cor_4);
+    }
+  }
+
+  .rout {
+    height: auto;
+    min-height: calc(100dvh - 4rem);
+
+  }
 }

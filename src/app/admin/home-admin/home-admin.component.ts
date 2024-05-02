@@ -24,13 +24,16 @@ export class HomeAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const randomImage = this.imageNames[Math.floor(Math.random() * this.imageNames.length)];
-    this.randomImageUrl = `assets/home/${randomImage}`;
-    console.log("iniciou ")
+    this.getImg();
     // this.auth.getUser().subscribe((p) => {
     //   console.log(p);
     //   this.msg = p.message;
     // })
+  }
+
+  private getImg() {
+    const randomImage = this.imageNames[Math.floor(Math.random() * this.imageNames.length)];
+    this.randomImageUrl = `assets/home/${randomImage}`;
   }
 
 }

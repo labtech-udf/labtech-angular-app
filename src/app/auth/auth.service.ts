@@ -49,12 +49,8 @@ export class AuthService {
   }
 
   register(usr: Usuario) {
-    console.log(`${this.api}/public/auth/register`);
-    console.log(usr);
     return this.http.post<any>(`${this.api}/public/auth/register`, usr);
   }
-
-
 
 }
 

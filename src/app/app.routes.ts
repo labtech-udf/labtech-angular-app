@@ -5,13 +5,14 @@ import { ConfigsComponent } from './admin/eventos/configs/configs.component';
 import { CreateUpdateComponent } from './admin/eventos/create-update/create-update.component';
 import { EventosComponent } from './admin/eventos/eventos.component';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import { UserPageComponent } from './admin/user/user-page/user-page.component';
+import { UsersComponent } from './admin/users/users.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { EventoDetalhesComponent } from './components/evento-detalhes/evento-detalhes.component';
 import { HomeComponent } from './home/home.component';
 import { PageHttpErrorComponent } from './layout/pages/page-http-error/page-http-error.component';
 import { PageNotFoundComponent } from './layout/pages/page-not-found/page-not-found.component';
-import { UsersComponent } from './admin/users/users.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,7 +25,8 @@ export const routes: Routes = [
       { path: 'eventos', component: EventosComponent },
       { path: 'event-manager', component: CreateUpdateComponent },
       { path: 'event-config', component: ConfigsComponent },
-      { path: 'usuarios', component: UsersComponent }
+      { path: 'usuarios', component: UsersComponent },
+      { path: 'user-page', component: UserPageComponent }
     ]
   },
   {

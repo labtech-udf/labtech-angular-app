@@ -1,0 +1,18 @@
+<section class="flex user-info flex-column h-full">
+  @if (!skeleton) {
+  <section class="header">
+    <section class="capa" style="background-image: url(assets/capa.png);">
+      <section class="perfil">
+        <img src="assets/user/user-2.svg">
+      </section>
+    </section>
+  </section>
+  <section class="usr_dados">
+    <span><b>Nome: </b>{{user?.name}}</span>
+    <span><b>Email: </b>{{user?.email}}</span>
+    <span><b>Permissões: </b>{{user?.roles}}</span>
+  </section>
+  }@else {
+  <p>LOADING</p>
+  }
+</section>

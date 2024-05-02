@@ -7,7 +7,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DividerModule } from 'primeng/divider';
 import { ToastModule } from 'primeng/toast';
 
-import { MenuItem } from '../../interfaces/Utils';
+import { MenuItem } from '../../../interfaces/Utils';
 
 @Component({
   selector: 'app-sidenav',
@@ -43,13 +43,14 @@ export class SidenavComponent implements OnInit {
         ]
       },
       {
-        label: 'users', icon: 'pi pi-user', subitems: [
+        label: 'Usuarios', icon: 'pi pi-users', subitems: [
           { label: 'Lista de usuarios', icon: 'pi pi-fw pi-list', action: () => this.navigateTo('/admin/usuarios') },
           { label: 'Settings', icon: 'pi pi-fw pi-cog', action: () => this.navigateTo('/admin/event-config') },
         ]
       },
+      { label: 'Meu perfil', icon: 'pi pi-user-edit', action: () => this.navigateTo('/admin/user-page') },
       { label: 'Documentation', icon: 'pi pi-fw pi-file' },
-      { label: 'Settings', icon: 'pi pi-fw pi-cog'}
+      { label: 'Settings', icon: 'pi pi-fw pi-cog' }
     ]
   }
   navigateTo(route: string): void {
