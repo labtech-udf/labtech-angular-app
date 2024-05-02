@@ -34,13 +34,22 @@ export class UserPageComponent implements OnInit {
           if (p) {
             this.user = p;
             console.log(this.user);
-            setTimeout(() => {
-              this.skeleton = false;
-              this.layoutService.hideProgressBar();
-            }, 3000);
+            this.disableLoadings();
           }
         })
+    } else {
+      console.log("dfsd")
+      const data = {
+        name: "Não tem token",
+        email: "Dont tem email"
+      }
+      this.user = data;
+      this.disableLoadings();
     }
   }
 
+  disableLoadings() {
+    this.skeleton = false;
+    this.layoutService.hideProgressBar();
+  }
 }
