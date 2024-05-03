@@ -22,6 +22,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
 export class LoginComponent implements OnInit {
   private theme = inject(ThemeService);
   private auth = inject(AuthService);

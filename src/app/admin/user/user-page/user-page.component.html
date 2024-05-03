@@ -8,9 +8,18 @@
     </section>
   </section>
   <section class="usr_dados">
-    <span><b>Nome: </b>{{user?.name}}</span>
-    <span><b>Email: </b>{{user?.email}}</span>
-    <span><b>Permissões: </b>{{user?.roles}}</span>
+    <section class="dados">
+      <span><b>Nome: </b>{{user?.name}}</span>
+      <span><b>Email: </b>{{user?.email}}</span>
+      <span><b>Permissões: </b>{{user?.roles}}</span>
+    </section>
+    <section class="actions">
+      @if (isEdit) {
+      <button class="shadow-1 bg-green-500">salvar</button>
+      }@else {
+      <button class="shadow-1 bg-orange-500" (click)="isEdit = true">editar</button>
+      }
+    </section>
   </section>
   }@else {
   <p>LOADING</p>

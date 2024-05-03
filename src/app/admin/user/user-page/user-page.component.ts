@@ -14,6 +14,7 @@ export class UserPageComponent implements OnInit {
   private layoutService = inject(LayoutService);
   skeleton: boolean = false;
   user: any;
+  isEdit: boolean = false;
 
   ngOnInit(): void {
     this.skeleton = true;
