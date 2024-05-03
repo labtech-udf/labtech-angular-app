@@ -66,6 +66,8 @@ export class SidenavComponent implements OnInit {
       message: '🐼 Deseja sair?',
       accept: () => {
         this.messageService.add({ severity: 'warn', summary: 'Logout', detail: 'Até mais 🐔' });
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('token');
         setTimeout(() => {
           this.router.navigate(['']);
         }, 500)

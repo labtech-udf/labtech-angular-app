@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
@@ -27,8 +28,13 @@ export class LoginComponent implements OnInit {
   private theme = inject(ThemeService);
   private auth = inject(AuthService);
   private utilsService = inject(UtilsService);
+  private rota: string = '';
   form!: FormGroup;
-  constructor(private messageService: MessageService) {
+  constructor(
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.form = new FormGroup({
       email: new FormControl(),
       password: new FormControl()
@@ -36,6 +42,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.rota = params['redirect'];
+      console.log('sasa', params['redirect'])
+    });
     this.theme.backgroundStored();
 
   }
@@ -69,6 +79,9 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (user) => {
           this.showMsg('success', 'Bem vindo', user.name);
+          if (this.rota) {
+            this.router.navigate([this.rota]);
+          }
         },
         error: (error) => {
           console.error(error);

@@ -73,7 +73,8 @@ export class ToolbarComponent implements OnInit {
         break;
       case 'login':
         // this.theme.setBackground('linear-gradient(43deg, #ffffff 56%, #3f83f0 100%)');
-        this.router.navigate(['auth-login']);
+        console.log(this.router.url)
+        this.router.navigate(['auth-login'], { queryParams: { redirect: this.router.url } });
         break;
       case 'adm':
         // this.theme.setBackground('linear-gradient(180deg, #ffffff 55%, #3f83f0 88%)');
