@@ -2,8 +2,10 @@
   @if (!skeleton) {
   <section class="header">
     <section class="capa" style="background-image: url(assets/capa.png);">
-      <section class="perfil">
-        <img src="assets/user/user-2.svg">
+      <section class="perfil" style="background-image: url(assets/user/user-2.svg);">
+        <section class="btn">
+          <button (onclick)="editPerfil($event)" class="butn"><i class="pi pi-pencil"></i></button>
+        </section>
       </section>
     </section>
   </section>
@@ -14,14 +16,37 @@
       <span><b>Permissões: </b>{{user?.roles}}</span>
     </section>
     <section class="actions">
-      @if (isEdit) {
-      <button class="shadow-1 bg-green-500">salvar</button>
-      }@else {
-      <button class="shadow-1 bg-orange-500" (click)="isEdit = true">editar</button>
-      }
+      <!-- <button class="shadow-1 bg-green-500">salvar</button> -->
+      <button class="shadow-1 bg-orange-500" (click)="isEdit = true; dialogEdit = true">editar</button>
     </section>
   </section>
   }@else {
   <p>LOADING</p>
   }
 </section>
+
+<p-dialog [position]="'bottom'" header="Header" [(visible)]="dialogEdit" [modal]="true" [style]="{ width: '25rem' }">
+  <ng-template pTemplate="header">
+    <div class="inline-flex align-items-center justify-content-center gap-2">
+      <p-avatar image="assets/user/user-2.svg" shape="circle" />
+      <span class="font-bold white-space-nowrap">
+        {{user?.name}}
+      </span>
+    </div>
+  </ng-template>
+  <span class="p-text-secondary block mb-5">Atualize suas informações.</span>
+  <div class="flex align-items-center gap-3 mb-3">
+    <label for="username" class="font-semibold w-6rem">
+      Nome
+    </label>
+    <input pInputText id="username" class="flex-auto" autocomplete="off" />
+  </div>
+  <div class="flex align-items-center gap-3 mb-5">
+    <label for="email" class="font-semibold w-6rem">Email</label>
+    <input pInputText id="email" class="flex-auto" autocomplete="off"/>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancel" [text]="true" severity="secondary" (click)="dialogEdit = false" />
+    <p-button label="Save" [outlined]="true" severity="secondary" (click)="dialogEdit = false" />
+  </ng-template>
+</p-dialog>

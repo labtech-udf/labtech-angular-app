@@ -7,8 +7,8 @@ import { MessageService } from 'primeng/api';
 
 import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { routes } from './app.routes';
-import { UtilsService } from './shared/Utils/utils.service';
 import { ThemeService } from './shared/utils/theme.service';
+import { UtilsService } from './shared/Utils/utils.service';
 
 
 export const appConfig: ApplicationConfig = {

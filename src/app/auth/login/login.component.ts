@@ -6,7 +6,6 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
-import { UtilsService } from '../../shared/Utils/utils.service';
 import { ThemeService } from '../../shared/utils/theme.service';
 import { AuthService } from '../auth.service';
 @Component({
@@ -27,7 +26,6 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   private theme = inject(ThemeService);
   private auth = inject(AuthService);
-  private utilsService = inject(UtilsService);
   private rota: string = '';
   form!: FormGroup;
   constructor(

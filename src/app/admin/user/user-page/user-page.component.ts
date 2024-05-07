@@ -1,20 +1,31 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '../../../auth/auth.service';
 import { LayoutService } from '../../../layout/layout.service';
-
 @Component({
   selector: 'app-user-page',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule, ReactiveFormsModule,
+    InputTextModule, DialogModule,
+    ButtonModule, AvatarModule
+  ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss'
 })
 export class UserPageComponent implements OnInit {
   private auth = inject(AuthService);
   private layoutService = inject(LayoutService);
+
+  form!: FormGroup;
   skeleton: boolean = false;
   user: any;
   isEdit: boolean = false;
+  dialogEdit: boolean = false;
 
   ngOnInit(): void {
     this.skeleton = true;
@@ -53,4 +64,9 @@ export class UserPageComponent implements OnInit {
     this.skeleton = false;
     this.layoutService.hideProgressBar();
   }
+
+  editPerfil($event: Event) {
+    throw new Error('Method not implemented.');
+  }
+
 }
