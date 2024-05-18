@@ -5,40 +5,34 @@ import { environment } from '../../env/env';
 import { Usuario } from '../interfaces/Usuario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AuthService {
   private api = `${environment.API_URL}`;
 
-  constructor(
-    private http: HttpClient
-  ) {
-  }
+  constructor(private http: HttpClient) {}
   login(usr: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': '*/*'
+      Accept: '*/*',
     });
-    return this.http.post(
-      `${this.api}/public/login`,
-      usr,
-      { headers: headers }
-    );
+    return this.http.post(`${this.api}/public/login`, usr, {
+      headers: headers,
+    });
   }
 
   getUser(dados: any): Observable<any> {
-    console.log(dados);
-
     if (!dados.token) {
       throw new Error('Missing token');
     }
 
-    const url = `${this.api}/private/getUser?email=${encodeURIComponent(dados.email)}`;
+    const url = `${this.api}/private/getUser?email=${encodeURIComponent(
+      dados.email
+    )}`;
     return this.http.get<any>(url, {
       headers: {
-        Authorization: `Bearer ${dados.token}`
-      }
+        Authorization: `Bearer ${dados.token}`,
+      },
     });
   }
 
@@ -49,6 +43,4 @@ export class AuthService {
   register(usr: Usuario) {
     return this.http.post<any>(`${this.api}/public/auth/register`, usr);
   }
-
 }
-

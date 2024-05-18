@@ -18,13 +18,9 @@ export class ConfigsService {
 
   // ODS - Objetivos de Desenvolvimento Sustentável
   getLists(type: string) {
-    return this.http.get<any>(`${this._api}/private/${type}`, {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      }
-    });
+    return this.http.get<any>(`${this._api}/private/${type}`);
   }
-  
+
   getPublic() {
     return this.http.get<any>(`${this._api}/public/listods/active`);
   }

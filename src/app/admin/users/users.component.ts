@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
             "size": null,
             "key": null
           };
-  
+
           // Adicionar o objeto photo ao elemento atual da lista
           element.photo = photo;
         });

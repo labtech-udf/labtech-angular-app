@@ -16,13 +16,12 @@ import { AuthService } from '../auth.service';
     ReactiveFormsModule,
     InputTextModule,
     DividerModule,
-    ToastModule
+    ToastModule,
   ],
   providers: [MessageService],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-
 export class LoginComponent implements OnInit {
   private theme = inject(ThemeService);
   private auth = inject(AuthService);
@@ -35,69 +34,74 @@ export class LoginComponent implements OnInit {
   ) {
     this.form = new FormGroup({
       email: new FormControl(),
-      password: new FormControl()
+      password: new FormControl(),
     });
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.rota = params['redirect'];
-      console.log('sasa', params['redirect'])
+      console.log('sasa', params['redirect']);
     });
     this.theme.backgroundStored();
-
   }
 
   send() {
     const usr = this.form.getRawValue();
 
-    this.auth.login(usr)
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.getUser(response);
-          }
-        },
-        error: (error) => {
-          console.error(error);
-          let severity = 'error';
-          let summary = '';
-          if (error.status >= 400 && error.status < 500) {
-            summary = 'Não autorizado';
-          } else if (error.status >= 500) {
-            summary = 'Erro';
-          }
-          this.showMsg(severity, summary, error.error?.message);
+    this.auth.login(usr).subscribe({
+      next: (response: any) => {
+        if (response) {
+          const token = response.token;
+          const email = response.email;
+          console.log('teste');
+          sessionStorage.setItem('access_token', token);
+          sessionStorage.setItem('user_email', email);
+
+          this.getUser(response);
         }
-      });
+      },
+      error: (error) => {
+        console.error(error);
+        let severity = 'error';
+        let summary = '';
+        if (error.status >= 400 && error.status < 500) {
+          summary = 'Não autorizado';
+        } else if (error.status >= 500) {
+          summary = 'Erro';
+        }
+        this.showMsg(severity, summary, error.error?.message);
+      },
+    });
   }
 
   private getUser(usr: any) {
-    this.auth.getUser(usr)
-      .subscribe({
-        next: (user) => {
-          this.showMsg('success', 'Bem vindo', user.name);
-          if (this.rota) {
-            this.router.navigate([this.rota]);
-          }
-        },
-        error: (error) => {
-          console.error(error);
-          this.showMsg('error', 'Erro ao recuperar usuário', error.error?.message); // Use optional chaining
+    this.auth.getUser(usr).subscribe({
+      next: (user) => {
+        this.showMsg('success', 'Bem vindo', user.name);
+        if (this.rota) {
+          this.router.navigate([this.rota]);
         }
-      });
+      },
+      error: (error) => {
+        console.error(error);
+        this.showMsg(
+          'error',
+          'Erro ao recuperar usuário',
+          error.error?.message
+        ); // Use optional chaining
+      },
+    });
   }
 
-  cad() {
-
-  }
+  cad() {}
 
   showMsg(severity: string, summary: string, detail: string) {
-    console.log('dsdsa', severity, summary, detail)
+    console.log('dsdsa', severity, summary, detail);
     this.messageService.add({
       severity: severity,
       summary: summary,
-      detail: detail
+      detail: detail,
     });
   }
 }

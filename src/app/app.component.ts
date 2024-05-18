@@ -3,9 +3,9 @@ import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { FooterComponent } from "./layout/footer/footer.component";
-import { LayoutComponent } from "./layout/layout.component";
-import { ToolbarComponent } from "./layout/toolbar/toolbar.component";
+import { FooterComponent } from './layout/footer/footer.component';
+import { LayoutComponent } from './layout/layout.component';
+import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { ThemeService } from './shared/utils/theme.service';
 @Component({
   selector: 'app-root',
@@ -13,13 +13,18 @@ import { ThemeService } from './shared/utils/theme.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [ConfirmationService, MessageService],
-  imports: [CommonModule, RouterOutlet, ToolbarComponent,
-     ToastModule, FooterComponent, LayoutComponent]
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    ToolbarComponent,
+    ToastModule,
+    FooterComponent,
+    LayoutComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   private theme = inject(ThemeService);
   private cdr = inject(ChangeDetectorRef);
-
 
   title = 'Eventos - APP';
   bgValue: string | undefined;
@@ -27,6 +32,6 @@ export class AppComponent implements OnInit {
     this.theme.background$.subscribe((p) => {
       this.bgValue = p != null ? p : 'var(--cor_1)';
       this.cdr.detectChanges();
-    })
+    });
   }
 }
