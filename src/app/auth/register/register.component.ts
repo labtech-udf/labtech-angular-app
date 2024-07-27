@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
 
   send() {
     console.log(this.form.getRawValue());
+    console.log('teste de commit');
   }
 
   cad() {
